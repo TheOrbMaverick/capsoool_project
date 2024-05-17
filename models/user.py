@@ -2,7 +2,7 @@ from .base import BaseModel
 from sqlalchemy import Column, String, Integer, DateTime
 from datetime import datetime
 from sqlalchemy.orm import relationship
-from models import create_table
+import bcrypt
 
 class User(BaseModel):
     __tablename__ = "users"
@@ -26,4 +26,15 @@ class User(BaseModel):
     videos = relationship("Video")
     recipients = relationship("Recipient")
 
-create_table()
+    # Property for password hashing and verification
+    @property
+    def password(self):
+        raise AttributeError("Password is not a readable attribute")
+
+    @password.setter
+    def password(self, plaintext_password):
+        hashed_password = bcrypt.hashpw(plaintext_password.encode('utf-8'), bcrypt.gensalt())
+        self._password = hashed_password.decode('utf-8')
+
+    def verify_password(self, plaintext_password):
+        return bcrypt.checkpw(plaintext_password.encode('utf-8'), self._password.encode('utf-8'))

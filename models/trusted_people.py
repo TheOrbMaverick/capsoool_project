@@ -2,7 +2,6 @@ from .base import BaseModel
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from models import create_table
 
 class Trusted(BaseModel):
     __tablename__ = "trusted_people"
@@ -15,5 +14,3 @@ class Trusted(BaseModel):
 
     # Define the author column
     author_id = Column(ForeignKey('users.id'))
-
-create_table()

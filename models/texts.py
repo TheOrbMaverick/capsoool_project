@@ -3,7 +3,6 @@ from sqlalchemy import Column, String, Text, Integer, DateTime, ForeignKey
 from datetime import datetime
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from models import create_table
 
 class Text(BaseModel):
     __tablename__ = 'texts'
@@ -15,5 +14,3 @@ class Text(BaseModel):
 
     # Define the author column
     author_id = Column(ForeignKey('users.id'))
-
-create_table()
