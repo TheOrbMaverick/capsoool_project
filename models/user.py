@@ -17,7 +17,7 @@ class User(BaseModel):
 
     # Note the underscore to indicate private use
     _password = Column("password", String, nullable=False)
-    tier = Column(String, nullable=False)
+    tier = Column(Integer, default=0)
 
     # # Define the relationships
     images = relationship("Image")
