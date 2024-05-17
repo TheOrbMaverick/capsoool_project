@@ -10,7 +10,7 @@ class User(BaseModel):
     email = Column(String, nullable = False, unique=True)
     first_name = Column(String, nullable = False)
     last_name = Column(String, nullable = False) 
-    phone_number = Column(String, nullable = False)
+    phone_number = Column(String)
     last_login = Column(DateTime, default=datetime.now)
     confirmed_email = Column(Integer, default=0)
     updated_at = Column(DateTime, default=datetime.now)

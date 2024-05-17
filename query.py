@@ -30,8 +30,8 @@ if __name__ == "__main__":
 
     new_user_3 = User(
         email='thelma@example.com',
-        first_name='John',
-        last_name='Doe',
+        first_name='Thelma',
+        last_name='Enang',
         phone_number='1234567890',
         last_login=datetime.now(),
         confirmed_email=1,

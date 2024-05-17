@@ -48,6 +48,38 @@ def login():
     else:
         return jsonify({'error': 'Invalid email or password'}), 401
 
+    
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+    if not data:
+        return jsonify({"message": "No input data provided"}), 400
+
+    first_name = data.get('firstName')
+    last_name = data.get('lastName')
+    email = data.get('email')
+    password = data.get('password')
+    phone_number = data.get('phoneNumber')
+
+    if not first_name or not last_name or not email or not password:
+        return jsonify({"message": "Missing fields"}), 400
+
+    new_user = User(
+        first_name=first_name,
+        last_name=last_name,
+        email=email,
+        password=password,
+        phone_number=phone_number
+    )
+
+    try:
+        session.add(new_user)
+        session.commit()
+        return jsonify({"message": "User created successfully"}), 201
+    except Exception as e:
+        session.rollback()
+        return jsonify({"message": "An error occurred", "error": str(e)}), 500
+
 
 if __name__ == "__main__":
     create_table()
