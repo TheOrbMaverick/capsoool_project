@@ -8,6 +8,7 @@ from models.texts import Text
 from models.user import User
 from flask_cors import CORS
 from sqlalchemy.exc import NoResultFound
+from datetime import datetime
 from models import create_table, session
 
 
@@ -32,6 +33,8 @@ def login():
 
     user = session.query(User).filter_by(email=email).first()
     if user and user.verify_password(password):
+        user.last_login = datetime.now()
+        session.commit()
         user_data = {
             'id': user.id,
             'email': user.email,

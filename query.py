@@ -14,7 +14,7 @@ if __name__ == "__main__":
         email='ita@example.com',
         first_name='Ita',
         last_name='Enang',
-        phone_number=datetime.now(),
+        phone_number='425667890',
         password='123456'
     )
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
         phone_number='1234567890',
         last_login=datetime.now(),
         confirmed_email=1,
-        password='111111'
+        password='123456'
     )
 
     new_user_3 = User(
