@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, Platform, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../../constants';
 import FormField from '@/components/FormField';
@@ -12,6 +12,8 @@ export default function Login() {
     email: '',
     password: ''
   });
+
+  const [currentUser, setCurrentUser] = useState({})
 
   const login = async () => {
     router.push('/home');
@@ -34,10 +36,11 @@ export default function Login() {
 
       if (response.ok) {
         // Use the user data as needed
-        console.log('User Data:', result.user);
-        
+        // console.log('User Data:', result.user);
+
+        setCurrentUser(result.user)
+
         // Navigate to the home page
-        router.push('/home');
       } else {
         Alert.alert('Error', result.error || 'Invalid email or password');
       }

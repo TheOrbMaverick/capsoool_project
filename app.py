@@ -22,36 +22,6 @@ def index():
     return "This is your front page"
 
 
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.json
-    email = data.get('email')
-    password = data.get('password')
-
-    if not email or not password:
-        return jsonify({'error': 'Email and password are required'}), 400
-
-    user = session.query(User).filter_by(email=email).first()
-    if user and user.verify_password(password):
-        user.last_login = datetime.now()
-        session.commit()
-        user_data = {
-            'id': user.id,
-            'email': user.email,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'phone_number': user.phone_number,
-            'last_login': user.last_login,
-            'confirmed_email': user.confirmed_email,
-            'created_at': user.created_at,
-            'updated_at': user.updated_at,
-            'tier': user.tier,
-        }
-        return jsonify({'user': user_data}), 200
-    else:
-        return jsonify({'error': 'Invalid email or password'}), 401
-
-    
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.json
@@ -82,6 +52,54 @@ def signup():
     except Exception as e:
         session.rollback()
         return jsonify({"message": "An error occurred", "error": str(e)}), 500
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    if not email or not password:
+        return jsonify({'error': 'Email and password are required'}), 400
+
+    user = session.query(User).filter_by(email=email).first()
+    if user and user.verify_password(password):
+        user.last_login = datetime.now()
+        session.commit()
+        user_data = {
+            'id': user.id,
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'phone_number': user.phone_number,
+            'last_login': user.last_login,
+            'confirmed_email': user.confirmed_email,
+            'created_at': user.created_at,
+            'updated_at': user.updated_at,
+            'tier': user.tier,
+        }
+        return jsonify({'user': user_data}), 200
+    else:
+        return jsonify({'error': 'Invalid email or password'}), 401
+    
+
+@app.route('/<int:user_id>/texts', methods=['GET'])
+def get_user_texts(user_id):
+    texts = Text.query.filter_by(author_id=user_id).all()
+    text_list = [
+        {
+            'id': text.id,
+            'title': text.title,
+            'content': text.content,
+            'recipients': text.recipients,
+            'created_at': text.created_at,
+            'updated_at': text.updated_at,
+            'author_id': text.author_id
+        }
+        for text in texts
+    ]
+    return jsonify(text_list)
 
 
 if __name__ == "__main__":
