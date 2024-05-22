@@ -73,7 +73,10 @@ function Home() {
                   Welcome
                 </Text>
                 <Text className='text-2xl font-psemibold text-white'>
-                  Ita Enang
+                  {user?.first_name} {user?.last_name}
+                </Text>
+                <Text className='text-gray-100 text-lg font-regular mb-3'>
+                  {user?.email}
                 </Text>
               </View>
 
