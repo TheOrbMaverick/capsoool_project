@@ -84,7 +84,7 @@ def login():
         return jsonify({'error': 'Invalid email or password'}), 401
     
 
-@app.route('/<int:user_id>/texts', methods=['GET'])
+@app.route('/home/<int:user_id>', methods=['GET'])
 def get_user_texts(user_id):
     texts = Text.query.filter_by(author_id=user_id).all()
     text_list = [

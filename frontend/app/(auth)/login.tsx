@@ -1,11 +1,12 @@
 import { View, Text, ScrollView, Image, Platform, Alert } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../../constants';
 import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
 import { Link } from 'expo-router';
+import { UserContext } from '@/components/UserContext';
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -13,10 +14,10 @@ export default function Login() {
     password: ''
   });
 
-  const [currentUser, setCurrentUser] = useState({})
+  const {user, setUser} = useContext(UserContext)
 
   const login = async () => {
-    router.push('/home');
+
     const { email, password } = form;
     if (!email || !password) {
       Alert.alert('Error', 'Please enter both email and password');
@@ -37,10 +38,12 @@ export default function Login() {
       if (response.ok) {
         // Use the user data as needed
         // console.log('User Data:', result.user);
+        const currentUser = result.user
 
-        setCurrentUser(result.user)
+        setUser(currentUser)
 
         // Navigate to the home page
+        router.push('/home')
       } else {
         Alert.alert('Error', result.error || 'Invalid email or password');
       }
