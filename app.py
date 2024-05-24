@@ -101,7 +101,7 @@ def get_user_texts(user_id):
     ]
     return jsonify(text_list)
 
-@app.route('/home/createtext', methods=['POST'])
+@app.route('/home/<int:user_id>/createtext', methods=['POST'])
 def create():
     data = request.json
     if not data:

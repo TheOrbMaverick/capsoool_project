@@ -94,7 +94,7 @@ export default function Login() {
 
           <View className={signupText}>
             <Text className='text-lg text-gray-100 font-pregular'>
-              Don't have an account?
+              Don't have an account? {" "}
             </Text>
             <Link
               href="/signup"

@@ -112,7 +112,7 @@ export default function SignUp() {
 
           <View className={signupText}>
             <Text className='text-lg text-gray-100 font-pregular'>
-              Already have an account?
+              Already have an account? {" "}
             </Text>
             <Link
               href="/login"

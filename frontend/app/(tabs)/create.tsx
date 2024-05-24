@@ -21,20 +21,26 @@ export default function Create() {
 
   const { user } = useContext(UserContext);
 
-  const handleSignUp = async () => {
+  const createText = async () => {
 
-    if (!form.title) {
+    const { title, recipients, content } = form;
+    if (!title) {
       Alert.alert("Please enter a title for this Capsoool");
       return;
     }
 
-    if (!form.content) {
-      Alert.alert("Please enter a message you'd like to leave behind");
+    if (!recipients) {
+      Alert.alert("Please enter the recepients of your message");
+      return;
+    }
+
+    if (!content) {
+      Alert.alert("Please enter a message you'd like to leave");
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:5000/home/createtext', {
+      const response = await fetch(`http://localhost:5000/home/${user?.id}/createtext`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -64,65 +70,40 @@ export default function Create() {
     <SafeAreaView className='bg-primary h-full'>
       <ScrollView>
         <View className={containerStyle}>
-          <Image
-            source={images.logo}
-            resizeMode='contain'
-            className='w-[115px] h-[35px]'
-          />
           <Text
             className='text-2xl text-white
             text-semibold mt-10 font-psemibold'
           >
-            Sign up to Capsoool
+            Enter your time capsule message
           </Text>
 
           <FormField
             title='title'
             value={form.title}
             handleChangeText={(e) => setForm({ ...form, title: e })}
-            otherStyles='mt-7'
+            otherStyles='mt-8'
           />
 
           <FormField
             title='recipients'
             value={form.recipients}
             handleChangeText={(e) => setForm({ ...form, recipients: e })}
-            otherStyles='mt-7'
+            otherStyles='mt-8'
           />
 
-          <View className={'space-y-2 mt-10'}>
-            <Text className="text-base text-gray-100 font-pmedium">Your Message:</Text>
-      
-            <View className={fieldWidth}>
-              <TextInput
-                className="flex-1 text-white font-psemibold text-base mt-7 h-300"
-                value={form.content}
-                placeholder="Hey sweetheart..."
-                multiline
-                placeholderTextColor="#7B7B8B"
-                onChangeText={(e) => setForm({ ...form, content: e })}
-              />
-            </View>
-
-          </View>
+          <FormField
+            title='your message:'
+            value={form.content}
+            handleChangeText={(e) => setForm({ ...form, content: e })}
+            otherStyles='mt-8 mb-8'
+          />
 
           <CustomButton
             title='Create'
-            handlePress={handleSignUp}
+            handlePress={() => {createText}}
             containerStyles={buttonStyle}
           />
 
-          <View className={signupText}>
-            <Text className='text-lg text-gray-100 font-pregular'>
-              Already have an account?
-            </Text>
-            <Link
-              href="/login"
-              className='text-lg font-psemibold text-secondary'
-            >
-              Login
-            </Link>
-          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
