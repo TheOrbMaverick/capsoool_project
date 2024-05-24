@@ -84,9 +84,9 @@ def login():
         return jsonify({'error': 'Invalid email or password'}), 401
     
 
-@app.route('/home/<int:user_id>', methods=['GET'])
+@app.route('/home/<int:user_id>', methods=['POST'])
 def get_user_texts(user_id):
-    texts = Text.query.filter_by(author_id=user_id).all()
+    texts = session.query(Text).filter_by(author_id=user_id).all()
     text_list = [
         {
             'id': text.id,
@@ -101,6 +101,34 @@ def get_user_texts(user_id):
     ]
     return jsonify(text_list)
 
+@app.route('/home/createtext', methods=['POST'])
+def create():
+    data = request.json
+    if not data:
+        return jsonify({"message": "No input data provided"}), 400
+
+    title = data.get('title')
+    recipients = data.get('recipients')
+    content = data.get('content')
+    author_id = data.get('author_id')
+
+    if not title or not recipients or not content:
+        return jsonify({"message": "Missing fields"}), 400
+
+    new_text = Text(
+        title=title,
+        recipients=recipients,
+        content=content,
+        author_id=author_id
+    )
+
+    try:
+        session.add(new_text)
+        session.commit()
+        return jsonify({"message": "Text created successfully"}), 201
+    except Exception as e:
+        session.rollback()
+        return jsonify({"message": "An error occurred", "error": str(e)}), 500
 
 if __name__ == "__main__":
     create_table()

@@ -1,7 +1,8 @@
-import { View, Text, TextStyle, Platform, TextInput, TouchableOpacity, Image, KeyboardTypeOptions } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Image, KeyboardTypeOptions } from 'react-native'
 import React from 'react'
 import { useState } from "react";
 import { icons } from "../constants";
+import { fieldWidth } from '@/constants/mystyles';
 
 interface FormField {
     title: string;
@@ -14,12 +15,6 @@ interface FormField {
   }
 
 const FormField: React.FC<FormField>= ({ title, value, placeholder, handleChangeText, otherStyles, ...props}) => {
-
-    const fieldWidth = Platform.OS !== 'web' ? `w-full h-16 px-4 bg-black-100 rounded-2xl 
-     border-2 border-black-200 focus:border-secondary 
-     flex flex-row items-center` : `w-2/4 h-16 px-4 bg-black-100 rounded-2xl 
-     border-2 border-black-200 focus:border-secondary 
-     flex flex-row items-center`;
 
     const [showPassword, setShowPassword] = useState(false);
 

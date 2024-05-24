@@ -1,36 +1,35 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Modal } from 'react-native';
 
 // Define the type for the text data
-interface TextData {
+export interface TextData {
     id: number;
     title: string;
     content: string;
     recipients: string;
-    created_at: Date;
-    updated_at: Date;
+    created_at: string;
+    updated_at: string;
     author_id: number;
 }
 
 // Define the props for the component
 interface TextComponentProps {
-    data: TextData[];
+    data: TextData;
+    onPressItem: () => void
 }
 
-const TextComponent: React.FC<TextComponentProps> = ({ data }) => {
+const TextCapsoool: React.FC<TextComponentProps> = ({ data, onPressItem }) => {
     return (
-        <View>
-            {data.map((text) => (
-                <View key={text.id} className='mb-20 b-1 p-10'>
-                    <Text className='text-2xl font-psemibold text-white'>{text.title}</Text>
-                    <Text className='text-gray-100 text-lg font-regular mb-3'>{text.content}</Text>
-                    <Text className='text-gray-100 text-lg font-regular mb-3'>Recipients: {text.recipients}</Text>
-                    <Text className='text-gray-100 text-lg font-regular mb-3'>Created At: {text.created_at.toString()}</Text>
-                    <Text className='text-gray-100 text-lg font-regular mb-3'>Last Updated: {text.updated_at.toString()}</Text>
-                </View>
-            ))}
-        </View>
+        <TouchableOpacity onPress={() => {onPressItem}}>
+            <View key={data.id} className='mb-10 pl-4 pr-16 flex-1 rounded-3xl'>
+                <Text className='text-2xl font-psemibold text-white'>{data.title}</Text>
+                <Text className='text-gray-100 text-sm font-regular mb-3'>Recipients: {data.recipients}</Text>
+                <Text className='text-white text-lg font-regular mb-3'>{data.content}</Text>
+                <Text className='text-gray-100 text-sm font-regular mb-3'>Created At: {data.created_at.toString()}</Text>
+                <Text className='text-gray-100 text-sm font-regular mb-3'>Last Updated: {data.updated_at.toString()}</Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 
-export default TextComponent;
+export default TextCapsoool;

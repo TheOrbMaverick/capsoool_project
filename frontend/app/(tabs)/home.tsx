@@ -1,70 +1,73 @@
-import React, { useContext, useEffect } from 'react'
-import {View, Text, FlatList, Image, RefreshControl, Platform, Alert} from 'react-native'
-import { Link } from 'expo-router'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { images } from '@/constants'
-import FormField from '@/components/FormField'
-import { useState } from 'react'
-import Trending from '@/components/Trending'
-import EmptyState from '@/components/EmptyState'
-import { UserContext } from '@/components/UserContext'
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, FlatList, Image, RefreshControl, Platform, Alert, Modal, TextInput } from 'react-native';
+import { Link, router } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { images } from '@/constants';
+import FormField from '@/components/FormField';
+import Trending from '@/components/Trending';
+import EmptyState from '@/components/EmptyState';
+import { UserContext } from '@/components/UserContext';
+import TextCapsoool, { TextData } from '@/components/TextCapsoool';
+import CustomButton from '@/components/CustomButton';
+import { buttonStyle, containerStyle, signupText } from '@/constants/mystyles';
 
-interface Item {
-  id: number;
-}
 
 function Home() {
-  // const [data, setData] = useState([])
-  const [refreshing, setRefreshing] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const {user} = useContext(UserContext)
+  const [data, setData] = useState<TextData[]>([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRender, setIsRender] = useState(false)
+
+
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
 
       try {
-        // const response = getData()
-
-        // setData(response)
-
+        const response = await fetch(`http://localhost:5000/home/${user?.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const result = await response.json();
+        setData(result);
       } catch (error: any) {
-        Alert.alert('Error', error.message)
+        Alert.alert('Error', error.message);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
-    fetchData();
-  }, [])
+    };
 
-  const onRefresh = async () =>{
-    setRefreshing(true)
-    //check for new capsools
-    setRefreshing(false)
+    fetchData();
+  }, []);
+
+  console.log(data);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    // Check for new capsools
+    setRefreshing(false);
+  };
+
+  const  openItem = () => {
+    console.log("you pressed the button")
+    router.push('/create')
   }
 
-  const [form, setForm] = useState({
-    lastName: ''
-  });
+  const workArea = Platform.OS === 'web' ? 'bg-primary h-full pl-16 pr-16 pt-8' : 'bg-primary h-full';
 
-  const workArea = Platform.OS === 'web' ? 'bg-primary h-full pl-16 pr-16 pt-8' : 'bg-primary h-full'
-
-  const data: Item[] = [{ id: 1 }, { id: 4 }, { id: 3 }];
   return (
     <SafeAreaView className={workArea}>
       <FlatList
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <Text className='text-3xl text-white' text-white>{item.id}</Text>
-          // <VideoCard
-          //   title={item.title}
-          //   thumbnail={item.thumbnail}
-          //   video={item.video}
-          //   creator={item.creator.username}
-          //   avatar={item.creator.avatar}
-          // />
+          <TextCapsoool data ={item} onPressItem={openItem}/>
         )}
+        extraData={isRender}
         ListHeaderComponent={() => (
           <View className='my-6 px-4 space-y-6'>
             <View className='justify-between items-start flex-row mb-6'>

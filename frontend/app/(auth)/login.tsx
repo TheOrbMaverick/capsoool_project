@@ -7,6 +7,7 @@ import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
 import { Link } from 'expo-router';
 import { UserContext } from '@/components/UserContext';
+import { buttonStyle, containerStyle, signupText } from '@/constants/mystyles';
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -53,13 +54,6 @@ export default function Login() {
       Alert.alert('Error', 'Something went wrong. Please try again later.');
     }
   };
-
-  const buttonStyle = Platform.OS !== 'web' ? 'w-full mt-7' : 'w-2/4 mt-7';
-  const containerStyle = Platform.OS === 'web'
-    ? 'w-full md:w-3/4 justify-center h-full px-4 my-24 mx-auto'
-    : 'w-full justify-center h-full px-4 my-6';
-  const signupText = Platform.OS !== 'web' ? 'flex justify-center pt-5 flex-row gap-2' 
-    : "flex pt-5 flex-row gap-2";
 
   return (
     <SafeAreaView className='bg-primary h-full'>

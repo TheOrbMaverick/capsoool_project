@@ -6,6 +6,7 @@ import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
 import { Link } from 'expo-router';
+import { buttonStyle, containerStyle, signupText } from '@/constants/mystyles';
 
 export default function SignUp() {
 
@@ -16,15 +17,6 @@ export default function SignUp() {
     password: '',
     confirmPassword: ''
   });
-
-  const buttonStyle = Platform.OS !== 'web' ? 'w-full mt-7' : 'w-2/4 mt-7';
-
-  const containerStyle = Platform.OS === 'web'
-    ? 'w-full md:w-3/4 justify-center h-full px-4 my-24 mx-auto'
-    : 'w-full justify-center h-full px-4 my-6';
-
-  const signupText = Platform.OS !== 'web'? 'flex justify-center pt-5 flex-row gap-2' 
-    : "flex pt-5 flex-row gap-2"
 
   const handleSignUp = async () => {
 
