@@ -26,6 +26,7 @@ export default function TabLayout() {
         name="home"
         options={{
           title: 'Home',
+          unmountOnBlur: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
           ),
@@ -35,6 +36,7 @@ export default function TabLayout() {
         name="data"
         options={{
           title: 'Saved',
+          unmountOnBlur: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'save' : 'save-outline'} color={color} />
           ),
@@ -44,6 +46,7 @@ export default function TabLayout() {
         name="create"
         options={{
           title: 'Create',
+          unmountOnBlur: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'create' : 'create-outline'} color={color} />
           ),
@@ -53,6 +56,7 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: 'Profile',
+          unmountOnBlur: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
           ),

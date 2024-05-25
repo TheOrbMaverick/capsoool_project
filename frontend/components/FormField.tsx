@@ -1,7 +1,6 @@
-import { View, Text, TextInput, TouchableOpacity, Image, KeyboardTypeOptions, Platform } from 'react-native'
-import React from 'react'
-import { useState } from "react";
-import { icons } from "../constants";
+import { View, Text, TextInput, TouchableOpacity, Image, KeyboardTypeOptions, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { icons } from '../constants';
 
 interface FormFieldProps {
     title: string;
@@ -16,15 +15,16 @@ interface FormFieldProps {
 const FormField: React.FC<FormFieldProps> = ({ title, value, placeholder, handleChangeText, otherStyles, ...props }) => {
     const [showPassword, setShowPassword] = useState(false);
 
-    // Determine the height based on the title
-    const isMessageField = title === "your message:";
+    const isMessageField = title === 'your message:';
+    const isPasswordField = title === 'Password' || title === 'Confirm Password';
     const fieldHeight = isMessageField ? 'h-48' : 'h-16';
     const multiline = isMessageField;
 
-    // Adjust field width styles based on the platform
-    const fieldWidth = Platform.OS !== 'web'
-        ? `w-full ${fieldHeight} px-4 bg-black-100 rounded-2xl border-2 border-black-200 focus:border-secondary flex flex-row items-center`
-        : `w-2/4 ${fieldHeight} px-4 bg-black-100 rounded-2xl border-2 border-black-200 focus:border-secondary flex flex-row items-center`;
+    const baseFieldWidth = Platform.OS !== 'web'
+        ? `w-full ${fieldHeight} px-4 bg-black-100 rounded-2xl border-2 border-black-200 focus:border-secondary flex flex-row`
+        : `w-2/4 ${fieldHeight} px-4 bg-black-100 rounded-2xl border-2 border-black-200 focus:border-secondary flex flex-row`;
+
+    const fieldWidth = isPasswordField ? `${baseFieldWidth} items-center` : baseFieldWidth;
 
     return (
         <View className={`space-y-2 ${otherStyles}`}>
@@ -37,12 +37,13 @@ const FormField: React.FC<FormFieldProps> = ({ title, value, placeholder, handle
                     placeholder={placeholder}
                     placeholderTextColor="#7B7B8B"
                     onChangeText={handleChangeText}
-                    secureTextEntry={(title === "Password" || title === "Confirm Password") && !showPassword}
+                    secureTextEntry={isPasswordField && !showPassword}
                     multiline={multiline}
+                    textAlignVertical={isMessageField ? 'top' : 'center'}
                     {...props}
                 />
 
-                {(title === "Password" || title === "Confirm Password") && (
+                {isPasswordField && (
                     <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                         <Image
                             source={!showPassword ? icons.eye : icons.eyeHide}

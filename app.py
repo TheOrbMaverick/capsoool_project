@@ -101,6 +101,7 @@ def get_user_texts(user_id):
     ]
     return jsonify(text_list)
 
+
 @app.route('/home/<int:user_id>/createtext', methods=['POST'])
 def create(user_id):
     data = request.json
@@ -129,6 +130,25 @@ def create(user_id):
     except Exception as e:
         session.rollback()
         return jsonify({"message": "An error occurred", "error": str(e)}), 500
+    
+
+@app.route('/home/<int:user_id>/text/<int:text_id>', methods=['PUT'])
+def edit_text(user_id, text_id):
+    data = request.get_json()
+    text_item = session.query(Text).filter_by(author_id=user_id, id=text_id).first()
+    if text_item is None:
+        return jsonify({'message': 'Text item not found'}), 404
+
+    text_item.title = data.get('title', text_item.title)
+    text_item.recipients = data.get('recipients', text_item.recipients)
+    text_item.content = data.get('content', text_item.content)
+    text_item.updated_at = datetime.now()
+    
+    session.add(text_item)
+    session.commit()
+    
+    return jsonify({'message': 'Text item updated successfully'}), 200
+
 
 if __name__ == "__main__":
     create_table()
