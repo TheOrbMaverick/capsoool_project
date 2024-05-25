@@ -102,7 +102,7 @@ def get_user_texts(user_id):
     return jsonify(text_list)
 
 @app.route('/home/<int:user_id>/createtext', methods=['POST'])
-def create():
+def create(user_id):
     data = request.json
     if not data:
         return jsonify({"message": "No input data provided"}), 400
@@ -110,7 +110,7 @@ def create():
     title = data.get('title')
     recipients = data.get('recipients')
     content = data.get('content')
-    author_id = data.get('author_id')
+    author_id = user_id
 
     if not title or not recipients or not content:
         return jsonify({"message": "Missing fields"}), 400

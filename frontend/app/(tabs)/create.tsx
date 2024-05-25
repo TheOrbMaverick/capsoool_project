@@ -55,7 +55,8 @@ export default function Create() {
 
       if (response.ok) {
         const result = await response.json();
-        Alert.alert('Success', 'You have signed up successfully!');
+        console.log(result)
+        Alert.alert('Success', 'You have created a text Capsoool!');
         router.push('/home');
       } else {
         const error = await response.json();
@@ -100,7 +101,7 @@ export default function Create() {
 
           <CustomButton
             title='Create'
-            handlePress={() => {createText}}
+            handlePress={createText}
             containerStyles={buttonStyle}
           />
 
