@@ -1,17 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, FlatList, Image, RefreshControl, Platform, Alert, Modal } from 'react-native';
+import { View, Text, FlatList, Image, RefreshControl, Platform, Alert, Modal, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '@/constants';
 import FormField from '@/components/FormField';
-// import Trending from '@/components/Trusted';
 import EmptyState from '@/components/EmptyState';
 import { UserContext } from '@/components/UserContext';
 import TextCapsoool, { TextData } from '@/components/TextCapsoool';
 import CustomButton from '@/components/CustomButton';
 import { buttonStyle } from '@/constants/mystyles';
 import { fetchData } from '@/functions/fetchData';
+import Trusted from '@/components/Trusted';
 
 function Home() {
+
+  const trustedPersons = [
+    {
+        id: 1,
+        email: 'user1_trusted1@example.com',
+        first_name: 'John',
+        last_name: 'Doe',
+        phone_number: '123-456-7890',
+        tp_image: "../assets/images/empty.png",
+        author_id: 1
+    }
+];
+
   const { user } = useContext(UserContext);
 
   const [data, setData] = useState<TextData[]>([]);
@@ -55,18 +68,18 @@ function Home() {
       'Delete',
       'Do you want to delete this capsoool?',
       [
-          {
-              text: 'No',
-              onPress: () => console.log('Cancel Pressed'),
-              style: 'cancel'
-          },
-          {
-              text: 'Delete',
-              onPress: () => handleDelete(item),
-              style: 'destructive'
-          }
+        {
+          text: 'No',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel'
+        },
+        {
+          text: 'Delete',
+          onPress: () => handleDelete(item),
+          style: 'destructive'
+        }
       ]
-  );
+    );
   };
 
   const handleDelete = async (item: TextData) => {
@@ -166,10 +179,10 @@ function Home() {
 
             <View className='w-full flex-1 pt-5 pb-8'>
               <Text className='text-gray-100 text-lg font-regular mb-3'>
-                Add your trusted people
+                your trusted people:
               </Text>
 
-              {/* <Trending trusted_person={[{ id: 1 }, { id: 2 }, { id: 3 }] ?? []} /> */}
+              <Trusted trusted_person={trustedPersons} />
             </View>
           </View>
         )}
@@ -187,6 +200,11 @@ function Home() {
         visible={isModalVisible}
         onRequestClose={() => setIsModalVisible(!isModalVisible)}>
         <View className='w-full bg-light_primary rounded-t-lg p-5 mt-24 h-screen rounded-tl-[30] rounded-tr-[30]'>
+          <TouchableOpacity
+            onPress={() => setIsModalVisible(false)}
+          >
+              <Text className='text-white'>Close</Text>
+          </TouchableOpacity>
           <Text className='text-2xl text-white text-center mt-10'>
             Edit Your Capsoool Message
           </Text>

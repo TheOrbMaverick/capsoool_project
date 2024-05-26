@@ -1,83 +1,64 @@
-// import { View, Text, FlatList } from 'react-native'
-// import React, { useContext, useEffect, useState } from 'react'
-// import * as Animatable from 'react-native-animatable';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-// import { fetchData } from '@/functions/fetchData';
-// import { UserContext } from './UserContext';
-// import { TextData } from './TextCapsoool';
+import { View, Text, FlatList, Image } from 'react-native';
+import React, { useState } from 'react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { images } from '@/constants'; // Adjust the path to your actual images file
 
-// interface Item {
-//   id: number;
-// }
+interface TrustedPerson {
+    id: number;
+    email?: string;
+    first_name?: string;
+    last_name?: string;
+    phone_number?: string;
+    tp_image?: string;
+    author_id?: number;
+}
 
-// interface Trusted {
-//   trusted_person: { id: number }[];
-// }
+interface TrustedProps {
+    trusted_person: TrustedPerson[];
+}
 
-// const zoomIn = {
-//   0: {
-//     scale: 0.9
-//   },
-//   1: {
-//     scale: 1,
-//   }
-// }
+interface TrustedItemProps {
+    item: TrustedPerson;
+}
 
-// const zoomOut = {
-//   0: {
-//     scale: 1
-//   },
-//   1: {
-//     scale: 0.9,
-//   }
-// }
+const defaultTrustedPersons: TrustedPerson[] = [
+    { id: 1, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() }, 
+    { id: 2, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() },
+    { id: 3, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() }
+];
 
-// const { user } = useContext(UserContext);
+const TrustedItem: React.FC<TrustedItemProps> = ({ item }) => {
+    return (
+        <View style={{ marginRight: 20 }}>
+            <TouchableOpacity>
+                <View className='border-light_primary rounded p-2 items-center'>
+                    <Image
+                        className='w-auto h-14 justify-center mt-0 pt-0'
+                        source={item.first_name === 'add trusted person' ? images.add_user : { uri: item.tp_image } }
+                        resizeMode='contain'
+                    />
+                    <Text className='text-white font-psemibold'>{item.first_name} {item.last_name}</Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+    );
+};
 
-// const url = `/home/${user?.id}/trusted`
-// const [data, setData] = useState<TextData[]>([]);
-// const [refreshing, setRefreshing] = useState(false);
-// const [isLoading, setIsLoading] = useState(true);
+const Trusted: React.FC<TrustedProps> = ({ trusted_person }) => {
+    // Combine the default trusted persons with the provided ones, replacing default ones as needed
+    const combinedTrustedPersons = [...trusted_person, ...defaultTrustedPersons].slice(0, 3);
 
-// useEffect(() => {
-//   fetchData(url, setData);
-// }, [user]);
+    return (
+        <FlatList
+            data={combinedTrustedPersons}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+                <TrustedItem item={item} />
+            )}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+        />
+    );
+};
 
-// console.log(data)
-
-
-// // const TrustedItem = ({activeItem, item}) => {
-// //   const [play, setPlay] = useState(false)
-// //   return (
-// //     <Animatable.View
-// //       className='mr-5'
-// //       animation={activeItem === item.$id ? zoomIn : zoomOut}
-// //       duration={500}
-// //       >
-// //         {play ? (
-// //           <Text className='text-white'>Playing</Text>
-// //         ) : (
-// //           <TouchableOpacity></TouchableOpacity>
-// //         )}
-
-// //     </Animatable.View>
-// //   )
-// // }
-
-// const Trusted: React.FC<Trusted>= ({ trusted_person }) => {
-//   const [activeItem, setActiveItem] = useState(trusted_person[0])
-
-//   return (
-//     <FlatList
-//     data={trusted_person}
-//     keyExtractor={(item) => item.id.toString()}
-//     renderItem={({ item }) => (
-//         // <TrustedItem activeItem={activeItem} item={item} />
-//         <Text>Hi</Text>
-//     )}
-//     horizontal
-//     />
-//   )
-// }
-
-// export default Trusted
+export default Trusted;
