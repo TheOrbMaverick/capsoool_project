@@ -101,6 +101,23 @@ def get_user_texts(user_id):
     ]
     return jsonify(text_list)
 
+@app.route('/home/<int:user_id>/trusted', methods=['GET'])
+def get_trusted(user_id):
+    trusted = session.query(Trusted).filter_by(author_id=user_id).all()
+    trust_list = [
+        {
+            'id': trust.id,
+            'first_name': trust.first_name,
+            'last_name': trust.last_name,
+            'email': trust.email,
+            'created_at': trust.created_at,
+            'updated_at': trust.updated_at,
+            'author_id': trust.author_id
+        }
+        for trust in trusted
+    ]
+    return jsonify(trust_list)
+
 
 @app.route('/home/<int:user_id>/createtext', methods=['POST'])
 def create(user_id):
@@ -122,7 +139,6 @@ def create(user_id):
         content=content,
         author_id=author_id
     )
-
     try:
         session.add(new_text)
         session.commit()
@@ -148,6 +164,18 @@ def edit_text(user_id, text_id):
     session.commit()
     
     return jsonify({'message': 'Text item updated successfully'}), 200
+
+
+@app.route('/home/<int:user_id>/text/<int:text_id>', methods=['DELETE'])
+def delete_text(user_id, text_id):
+    text_item = session.query(Text).filter_by(author_id=user_id, id=text_id).first()
+    if text_item is None:
+        return jsonify({'message': 'Text item not found'}), 404
+
+    session.delete(text_item)
+    session.commit()
+
+    return jsonify({'message': 'Text item deleted successfully'}), 200
 
 
 if __name__ == "__main__":

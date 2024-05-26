@@ -8,7 +8,8 @@ class Video(BaseModel):
 
     filename = Column(String, nullable = False)
     filepath = Column(String, nullable = False) 
-    sze = Column(Integer, nullable = False)
+    size = Column(Integer, nullable = False)
+    thumbnail = Column(String)
 
     # Define the author column
     author_id = Column(ForeignKey('users.id'))

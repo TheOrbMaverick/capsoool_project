@@ -3,7 +3,7 @@ import { View, Text, FlatList, Image, RefreshControl, Platform, Alert, Modal } f
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '@/constants';
 import FormField from '@/components/FormField';
-import Trending from '@/components/Trending';
+// import Trending from '@/components/Trusted';
 import EmptyState from '@/components/EmptyState';
 import { UserContext } from '@/components/UserContext';
 import TextCapsoool, { TextData } from '@/components/TextCapsoool';
@@ -50,6 +50,50 @@ function Home() {
     setIsModalVisible(true);
   };
 
+  const deleteItem = (item: TextData) => {
+    Alert.alert(
+      'Delete',
+      'Do you want to delete this capsoool?',
+      [
+          {
+              text: 'No',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel'
+          },
+          {
+              text: 'Delete',
+              onPress: () => handleDelete(item),
+              style: 'destructive'
+          }
+      ]
+  );
+  };
+
+  const handleDelete = async (item: TextData) => {
+    try {
+        const url = `http://localhost:5000/home/${user?.id}/text/${item.id}`;
+        const method = 'DELETE';
+
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        console.log('Item deleted:', result);
+        Alert.alert('Success', 'The item has been deleted.');
+    } catch (error) {
+        console.error('Error deleting item:', error);
+        Alert.alert('Error', 'There was a problem deleting the item.');
+    }
+  };
+
   const editText = async () => {
     try {
       const url = `http://localhost:5000/home/${user?.id}/text/${form.id}`;
@@ -92,7 +136,9 @@ function Home() {
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }: { item: TextData }) => (
-          <TextCapsoool data={item} onPressItem={() => openItem(item)} />
+          <TextCapsoool data={item} onPressItem={() => openItem(item)} 
+            onLongPressItem={() => deleteItem(item)}
+          />
         )}
         ListHeaderComponent={() => (
           <View className='my-6 px-4 space-y-6'>
@@ -123,7 +169,7 @@ function Home() {
                 Add your trusted people
               </Text>
 
-              <Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }] ?? []} />
+              {/* <Trending trusted_person={[{ id: 1 }, { id: 2 }, { id: 3 }] ?? []} /> */}
             </View>
           </View>
         )}

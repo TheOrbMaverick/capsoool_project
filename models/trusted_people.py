@@ -11,6 +11,7 @@ class Trusted(BaseModel):
     last_name = Column(String, nullable = False) 
     phone_number = Column(String, nullable = False)
     updated_at = Column(DateTime, default=datetime.now)
+    tp_image = Column(String)
 
     # Define the author column
     author_id = Column(ForeignKey('users.id'))

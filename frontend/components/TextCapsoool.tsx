@@ -16,11 +16,12 @@ export interface TextData {
 interface TextComponentProps {
     data: TextData;
     onPressItem: () => void
+    onLongPressItem: () => void
 }
 
-const TextCapsoool: React.FC<TextComponentProps> = ({ data, onPressItem }) => {
+const TextCapsoool: React.FC<TextComponentProps> = ({ data, onPressItem, onLongPressItem }) => {
     return (
-        <TouchableOpacity onPress={onPressItem}>
+        <TouchableOpacity onPress={onPressItem} onLongPress={onLongPressItem}>
             <View key={data.id} className='mb-10 pl-4 pr-16 flex-1 rounded-3xl'>
                 <Text className='text-2xl font-psemibold text-white'>{data.title}</Text>
                 <Text className='text-gray-100 text-sm font-regular mb-3'>Recipients: {data.recipients}</Text>

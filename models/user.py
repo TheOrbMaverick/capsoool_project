@@ -14,6 +14,7 @@ class User(BaseModel):
     last_login = Column(DateTime, default=datetime.now)
     confirmed_email = Column(Integer, default=0)
     updated_at = Column(DateTime, default=datetime.now)
+    user_image = Column(String)
 
     # Note the underscore to indicate private use
     _password = Column("password", String, nullable=False)
