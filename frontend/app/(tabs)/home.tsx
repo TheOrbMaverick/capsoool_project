@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { View, Text, FlatList, Image, RefreshControl, Platform, Alert, Modal, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '@/constants';
@@ -10,29 +10,37 @@ import CustomButton from '@/components/CustomButton';
 import { buttonStyle } from '@/constants/mystyles';
 import { fetchData } from '@/functions/fetchData';
 import Trusted from '@/components/Trusted';
+import { DataContext } from '@/components/DataContext';
+/**
+ * Home Component
+ * 
+ * The Home component is responsible for displaying user-specific content including texts, 
+ * trusted contacts, and provides functionalities to edit and delete texts.
+ * 
+ * @component
+ * @example
+ * return (
+ *   <Home />
+ * )
+ */
 
 function Home() {
-
-  const trustedPersons = [
-    {
-        id: 1,
-        email: 'user1_trusted1@example.com',
-        first_name: 'John',
-        last_name: 'Doe',
-        phone_number: '123-456-7890',
-        tp_image: "../assets/images/empty.png",
-        author_id: 1
-    }
-];
-
   const { user } = useContext(UserContext);
+  const { allData } = useContext(DataContext);
 
+  const [texts, trustedPersons, videos, image] = allData || [[], [], [], []];
+
+  console.log(texts)
+
+  // State hooks
   const [data, setData] = useState<TextData[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
 
+
+  // Form state
   const [form, setForm] = useState({
     id: 0,
     title: '',
@@ -42,10 +50,14 @@ function Home() {
 
   const url = `http://localhost:5000/home/${user?.id}`;
 
+  // Fetch data when the component mounts or user changes
   useEffect(() => {
     fetchData(url, setData, setIsLoading);
   }, [user]);
 
+  /**
+   * Refresh control callback
+   */
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
@@ -53,6 +65,10 @@ function Home() {
     }, 2000);
   }, []);
 
+  /**
+   * Opens the modal to edit a specific text item
+   * @param {TextData} item - The text item to be edited
+   */
   const openItem = (item: TextData) => {
     setForm({
       id: item.id,
@@ -63,6 +79,10 @@ function Home() {
     setIsModalVisible(true);
   };
 
+  /**
+   * Prompts user to delete a specific text item
+   * @param {TextData} item - The text item to be deleted
+   */
   const deleteItem = (item: TextData) => {
     Alert.alert(
       'Delete',
@@ -82,31 +102,38 @@ function Home() {
     );
   };
 
+  /**
+   * Handles the deletion of a text item
+   * @param {TextData} item - The text item to be deleted
+   */
   const handleDelete = async (item: TextData) => {
     try {
-        const url = `http://localhost:5000/home/${user?.id}/text/${item.id}`;
-        const method = 'DELETE';
+      const url = `http://localhost:5000/home/${user?.id}/text/${item.id}`;
+      const method = 'DELETE';
 
-        const response = await fetch(url, {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
 
-        const result = await response.json();
-        console.log('Item deleted:', result);
-        Alert.alert('Success', 'The item has been deleted.');
+      const result = await response.json();
+      console.log('Item deleted:', result);
+      Alert.alert('Success', 'The item has been deleted.');
     } catch (error) {
-        console.error('Error deleting item:', error);
-        Alert.alert('Error', 'There was a problem deleting the item.');
+      console.error('Error deleting item:', error);
+      Alert.alert('Error', 'There was a problem deleting the item.');
     }
   };
 
+  /**
+   * Handles the update of a text item
+   */
   const editText = async () => {
     try {
       const url = `http://localhost:5000/home/${user?.id}/text/${form.id}`;
@@ -140,6 +167,28 @@ function Home() {
       Alert.alert('Error', 'An unexpected error occurred. Please try again later.');
     }
   };
+
+
+//   // Example useEffect to fetch or set trusted persons
+//   useEffect(() => {
+//     // Fetch the trusted persons data or set default data
+//     // For example, you can use an API call here
+//     // Here we're simulating with an empty array as if no data was provided
+//     const fetchTrustedPersons = async () => {
+//         try {
+//             // Simulate fetching data
+//             // const response = await fetchYourDataFunction();
+//             // setTrustedPersons(response.data);
+
+//             // For now, we simulate no data
+//             setTrustedPersons([]);
+//         } catch (error) {
+//             console.error('Failed to fetch trusted persons:', error);
+//         }
+//     };
+
+//     fetchTrustedPersons();
+// }, []);
 
   const workArea = Platform.OS === 'web' ? 'bg-primary h-full pl-16 pr-16 pt-8' : 'bg-primary h-full';
 
@@ -194,16 +243,21 @@ function Home() {
         )}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       />
+
+      {/* 
+        Modal for editing text capsoool 
+      */}
       <Modal
         animationType="slide"
         transparent={true}
         visible={isModalVisible}
-        onRequestClose={() => setIsModalVisible(!isModalVisible)}>
+        onRequestClose={() => setIsModalVisible(!isModalVisible)}
+      >
         <View className='w-full bg-light_primary rounded-t-lg p-5 mt-24 h-screen rounded-tl-[30] rounded-tr-[30]'>
           <TouchableOpacity
             onPress={() => setIsModalVisible(false)}
           >
-              <Text className='text-white'>Close</Text>
+            <Text className='text-white'>Close</Text>
           </TouchableOpacity>
           <Text className='text-2xl text-white text-center mt-10'>
             Edit Your Capsoool Message

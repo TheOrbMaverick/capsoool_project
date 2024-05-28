@@ -3,6 +3,8 @@ import React from 'react'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
+//This is the layout for the screens that authenticates the user
+
 const AuthLayout = () => {
   return (
     <>

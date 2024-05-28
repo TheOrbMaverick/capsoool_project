@@ -22,22 +22,22 @@ interface TrustedItemProps {
 }
 
 const defaultTrustedPersons: TrustedPerson[] = [
-    { id: 1, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() }, 
-    { id: 2, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() },
-    { id: 3, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() }
+    { id: 4, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() }, 
+    { id: 5, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() },
+    { id: 6, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() }
 ];
 
 const TrustedItem: React.FC<TrustedItemProps> = ({ item }) => {
     return (
-        <View style={{ marginRight: 20 }}>
+        <View className='mr-2'>
             <TouchableOpacity>
                 <View className='border-light_primary rounded p-2 items-center'>
                     <Image
-                        className='w-auto h-14 justify-center mt-0 pt-0'
+                        className='w-auto h-12 justify-center mt-0 pt-0 opacity-50'
                         source={item.first_name === 'add trusted person' ? images.add_user : { uri: item.tp_image } }
                         resizeMode='contain'
                     />
-                    <Text className='text-white font-psemibold'>{item.first_name} {item.last_name}</Text>
+                    <Text className='text-white font-pextralight'>{item.first_name} {item.last_name}</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -45,7 +45,6 @@ const TrustedItem: React.FC<TrustedItemProps> = ({ item }) => {
 };
 
 const Trusted: React.FC<TrustedProps> = ({ trusted_person }) => {
-    // Combine the default trusted persons with the provided ones, replacing default ones as needed
     const combinedTrustedPersons = [...trusted_person, ...defaultTrustedPersons].slice(0, 3);
 
     return (

@@ -9,6 +9,9 @@ import { Link } from 'expo-router';
 import { UserContext } from '@/components/UserContext';
 import { buttonStyle, containerStyle, signupText } from '@/constants/mystyles';
 
+
+// This is the function that handles user login
+
 export default function Login() {
   const [form, setForm] = useState({
     email: '',

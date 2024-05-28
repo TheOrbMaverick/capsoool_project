@@ -178,6 +178,65 @@ def delete_text(user_id, text_id):
     return jsonify({'message': 'Text item deleted successfully'}), 200
 
 
+@app.route('/home/<int:user_id>/alldata', methods=['GET'])
+def all_user_data(user_id):
+    texts = session.query(Text).filter_by(author_id=user_id).all()
+    videos = session.query(Video).filter_by(author_id=user_id).all()
+    images = session.query(Image).filter_by(author_id=user_id).all()
+    trusted = session.query(Trusted).filter_by(author_id=user_id).all()
+
+    text_list = [
+        {
+            'id': text.id,
+            'title': text.title,
+            'content': text.content,
+            'recipients': text.recipients,
+            'created_at': text.created_at,
+            'updated_at': text.updated_at,
+            'author_id': text.author_id
+        }
+        for text in texts
+    ]
+
+    video_list = [
+        {
+            'id': video.id,
+            'title': video.filename,
+            'content': video.filepath,
+            'recipients': video.thumbnail,
+            'created_at': video.created_at,
+            'author_id': video.author_id
+        }
+        for video in videos
+    ]
+
+    image_list = [
+        {
+            'id': image.id,
+            'title': image.filename,
+            'content': image.filepath,
+            'created_at': image.created_at,
+            'author_id': image.author_id
+        }
+        for image in images
+    ]
+
+    trust_list = [
+        {
+            'id': trust.id,
+            'first_name': trust.first_name,
+            'last_name': trust.last_name,
+            'email': trust.email,
+            'created_at': trust.created_at,
+            'updated_at': trust.updated_at,
+            'author_id': trust.author_id
+        }
+        for trust in trusted
+    ]
+
+    return jsonify(text_list, trust_list, video_list, image_list)
+
+
 if __name__ == "__main__":
     create_table()
     app.config["SERVER_NAME"] = "localhost:5000"

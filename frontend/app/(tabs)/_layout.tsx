@@ -33,16 +33,6 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="data"
-        options={{
-          title: 'Saved',
-          unmountOnBlur: true,
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'save' : 'save-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="create"
         options={{
           title: 'Create',
