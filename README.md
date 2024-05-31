@@ -12,6 +12,8 @@ This is my Capsoool project : A mobile app for storing people’s wills electron
 It gives one the opportunity to save videos, images, voice messages and the messages that can be kept and sent to the family members after one’s demise.
 
 **The languages and technical skills that were used are:**
+
+
 **BACKEND:**
 
 - Python backend
@@ -28,6 +30,8 @@ It gives one the opportunity to save videos, images, voice messages and the mess
 - Expo router
 - Nativewind CSS
 - Node package manager
+
+
 
 **HOW TO RUN THE APP**
 First you need to run the backend from the root folder:
@@ -50,6 +54,8 @@ from there you can navigate through the app:
 - hit the create button to create a capsoool. all fileds must contain something. write a message you would like to live behid for your family.
 - after that you can press and hold down (holding down does not work on web) to delete the entry.
 - or you can click it once to edit the entry.
+
+
 
 **A default login and password you can use if you do not want to sign up is:**
 email: ita@example.com
