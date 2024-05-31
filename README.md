@@ -71,3 +71,5 @@ The router files for the api is located at "capsoool_project/routes" the models 
 I use a basemodel.py file to set certain things that are constant throughout all the database tables such as "id" and "created_at".
 
 The "text.py", "trusted.py" and "user.py" are files that i run to insert default default data in the database for testing purposes. just so the created database has some data.
+
+link to landing page: https://itaenangalxlandingpage.my.canva.site/
