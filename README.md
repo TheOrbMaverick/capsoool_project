@@ -5,8 +5,10 @@ This life experience urged me to create something that’ll help people to not f
 I’ve had the idea for a long time and so I started the long and adious journey of building Capsool. 
 I didn’t have enough skill and knowledge to execute this idea of mine until I found the ALX school which has taught me a whole lot since I enrolled.
 
-This is my Capsoool project : An app for storing people’s wills electronically or as I like to call them, Time Capsoools. 
-The idea is to have a time capsule of one’s life to leave for your family. 
+This is my Capsoool project : An app for storing people’s wills electronically or as I like to call them, capsoools.
+
+**The idea is to have a time capsule of one’s life to leave for your family.**
+
 It gives one the opportunity to save videos, images, voice messages and the messages that can be kept and sent to the family members after one’s demise.
 
 First you need to run the backend from the root folder:
