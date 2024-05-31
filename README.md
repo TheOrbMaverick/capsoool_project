@@ -5,12 +5,31 @@ This life experience urged me to create something that’ll help people to not f
 I’ve had the idea for a long time and so I started the long and adious journey of building Capsool. 
 I didn’t have enough skill and knowledge to execute this idea of mine until I found the ALX school which has taught me a whole lot since I enrolled.
 
-This is my Capsoool project : An app for storing people’s wills electronically or as I like to call them, capsoools.
+This is my Capsoool project : A mobile app for storing people’s wills electronically or as I like to call them, capsoools.
 
 **The idea is to have a time capsule of one’s life to leave for your family.**
 
 It gives one the opportunity to save videos, images, voice messages and the messages that can be kept and sent to the family members after one’s demise.
 
+**The languages and technical skills that were used are:**
+**BACKEND:**
+
+- Python backend
+- Flask framework
+- bcrpyt
+- SQLAlchemy for DB models
+- SQLLITE3 DB to be changed to MySQL or PostGress on production
+
+
+**FRONTEND:**
+
+- Typescript frontend
+- React Native with Expo
+- Expo router
+- Nativewind CSS
+- Node package manager
+
+**HOW TO RUN THE APP**
 First you need to run the backend from the root folder:
 in capsoool_project directory run the command "python3 app.py"
 
@@ -29,10 +48,10 @@ from there you can navigate through the app:
 - signup to create an account,
 - login with the email and pasword you creted
 - hit the create button to create a capsoool. all fileds must contain something. write a message you would like to live behid for your family.
-- after that you can press and hold down to delete the entry.
+- after that you can press and hold down (holding down does not work on web) to delete the entry.
 - or you can click it once to edit the entry.
 
-a default login and password you can use if you do not want to sign up is:
+**A default login and password you can use if you do not want to sign up is:**
 email: ita@example.com
 password: 123456
 
