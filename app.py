@@ -11,19 +11,35 @@ from sqlalchemy.exc import NoResultFound
 from datetime import datetime
 from models import create_table, session
 
-
-
 app = Flask(__name__, subdomain_matching=True)
 app.register_blueprint(app_routes)
 CORS(app)
 
 @app.route("/")
 def index():
+    """
+    Index route for the application.
+    
+    Returns:
+        str: Front page message
+    """
     return "This is your front page"
-
 
 @app.route('/signup', methods=['POST'])
 def signup():
+    """
+    Signup route to create a new user.
+    
+    Request Body:
+        firstName (str): User's first name
+        lastName (str): User's last name
+        email (str): User's email
+        password (str): User's password
+        phoneNumber (str): User's phone number
+    
+    Returns:
+        response (json): Success message or error message
+    """
     data = request.json
     if not data:
         return jsonify({"message": "No input data provided"}), 400
@@ -53,9 +69,18 @@ def signup():
         session.rollback()
         return jsonify({"message": "An error occurred", "error": str(e)}), 500
 
-
 @app.route('/login', methods=['POST'])
 def login():
+    """
+    Login route to authenticate a user.
+    
+    Request Body:
+        email (str): User's email
+        password (str): User's password
+    
+    Returns:
+        response (json): User data or error message
+    """
     data = request.json
     email = data.get('email')
     password = data.get('password')
@@ -82,10 +107,18 @@ def login():
         return jsonify({'user': user_data}), 200
     else:
         return jsonify({'error': 'Invalid email or password'}), 401
-    
 
 @app.route('/home/<int:user_id>', methods=['POST'])
 def get_user_texts(user_id):
+    """
+    Retrieve all texts for a specific user.
+    
+    Args:
+        user_id (int): The ID of the user whose texts are to be retrieved
+    
+    Returns:
+        response (json): List of texts or error message
+    """
     texts = session.query(Text).filter_by(author_id=user_id).all()
     text_list = [
         {
@@ -103,6 +136,15 @@ def get_user_texts(user_id):
 
 @app.route('/home/<int:user_id>/trusted', methods=['GET'])
 def get_trusted(user_id):
+    """
+    Retrieve all trusted people for a specific user.
+    
+    Args:
+        user_id (int): The ID of the user whose trusted people are to be retrieved
+    
+    Returns:
+        response (json): List of trusted people or error message
+    """
     trusted = session.query(Trusted).filter_by(author_id=user_id).all()
     trust_list = [
         {
@@ -118,9 +160,22 @@ def get_trusted(user_id):
     ]
     return jsonify(trust_list)
 
-
 @app.route('/home/<int:user_id>/createtext', methods=['POST'])
-def create(user_id):
+def create_text(user_id):
+    """
+    Create a new text for a specific user.
+    
+    Args:
+        user_id (int): The ID of the user creating the text
+    
+    Request Body:
+        title (str): Title of the text
+        recipients (str): Recipients of the text
+        content (str): Content of the text
+    
+    Returns:
+        response (json): Success message or error message
+    """
     data = request.json
     if not data:
         return jsonify({"message": "No input data provided"}), 400
@@ -146,10 +201,24 @@ def create(user_id):
     except Exception as e:
         session.rollback()
         return jsonify({"message": "An error occurred", "error": str(e)}), 500
-    
 
 @app.route('/home/<int:user_id>/text/<int:text_id>', methods=['PUT'])
 def edit_text(user_id, text_id):
+    """
+    Edit an existing text for a specific user.
+    
+    Args:
+        user_id (int): The ID of the user who owns the text
+        text_id (int): The ID of the text to be edited
+    
+    Request Body:
+        title (str): Title of the text
+        recipients (str): Recipients of the text
+        content (str): Content of the text
+    
+    Returns:
+        response (json): Success message or error message
+    """
     data = request.get_json()
     text_item = session.query(Text).filter_by(author_id=user_id, id=text_id).first()
     if text_item is None:
@@ -165,9 +234,18 @@ def edit_text(user_id, text_id):
     
     return jsonify({'message': 'Text item updated successfully'}), 200
 
-
 @app.route('/home/<int:user_id>/text/<int:text_id>', methods=['DELETE'])
 def delete_text(user_id, text_id):
+    """
+    Delete a text for a specific user.
+    
+    Args:
+        user_id (int): The ID of the user who owns the text
+        text_id (int): The ID of the text to be deleted
+    
+    Returns:
+        response (json): Success message or error message
+    """
     text_item = session.query(Text).filter_by(author_id=user_id, id=text_id).first()
     if text_item is None:
         return jsonify({'message': 'Text item not found'}), 404
@@ -177,9 +255,17 @@ def delete_text(user_id, text_id):
 
     return jsonify({'message': 'Text item deleted successfully'}), 200
 
-
 @app.route('/home/<int:user_id>/alldata', methods=['GET'])
 def all_user_data(user_id):
+    """
+    Retrieve all data (texts, videos, images, trusted people) for a specific user.
+    
+    Args:
+        user_id (int): The ID of the user whose data is to be retrieved
+    
+    Returns:
+        response (json): Lists of texts, videos, images, and trusted people
+    """
     texts = session.query(Text).filter_by(author_id=user_id).all()
     videos = session.query(Video).filter_by(author_id=user_id).all()
     images = session.query(Image).filter_by(author_id=user_id).all()
@@ -235,7 +321,6 @@ def all_user_data(user_id):
     ]
 
     return jsonify(text_list, trust_list, video_list, image_list)
-
 
 if __name__ == "__main__":
     create_table()
