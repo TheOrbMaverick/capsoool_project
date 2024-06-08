@@ -13,7 +13,13 @@ export default function TabLayout() {
         tabBarShowLabel: true,
         tabBarActiveTintColor: '#FFA001',
         tabBarInactiveTintColor: '#CDCDE0',
-        headerShown: false,
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#161622',
+          shadowColor: 'transparent',
+        },
+        headerTintColor: '#FFFFFF',
+        headerShadowVisible: false,
         tabBarStyle: {
           display: isWeb ? 'none' : 'flex',
           backgroundColor: '#161622',
@@ -25,7 +31,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Home',
+          title: 'Capsoools',
           unmountOnBlur: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />

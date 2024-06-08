@@ -12,19 +12,19 @@ import { fetchData } from '@/functions/fetchData';
 import Trusted from '@/components/Trusted';
 import { DataContext } from '@/components/DataContext';
 /**
- * Home Component
+ * TextsCapule Component
  * 
- * The Home component is responsible for displaying user-specific content including texts, 
+ * The TextsCapule component is responsible for displaying user-specific content including texts, 
  * trusted contacts, and provides functionalities to edit and delete texts.
  * 
  * @component
  * @example
  * return (
- *   <Home />
+ *   <TextsCapule />
  * )
  */
 
-function Home() {
+function TextsCapule() {
   const { user } = useContext(UserContext);
   const { allData } = useContext(DataContext);
 
@@ -291,4 +291,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default TextsCapule;

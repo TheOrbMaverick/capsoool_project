@@ -1,17 +1,13 @@
 import { View, Text, ScrollView, Image, Platform, Alert, TouchableOpacity } from 'react-native';
 import React, { useContext, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { images } from '../../constants';
 import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
-import { Link } from 'expo-router';
 import { buttonStyle, containerStyle, signupText } from '@/constants/mystyles';
-import { TextInput } from 'react-native-gesture-handler';
-import { fieldWidth } from '@/constants/mystyles';
 import { UserContext } from '@/components/UserContext';
 
-export default function Create() {
+export default function TextCreate() {
 
   const [form, setForm] = useState({
     title: '',
@@ -57,7 +53,7 @@ export default function Create() {
         const result = await response.json();
         console.log(result)
         Alert.alert('Success', 'You have created a text Capsoool!');
-        router.push('/home');
+        router.push('/home/texts');
       } else {
         const error = await response.json();
         Alert.alert('Error', error.message || 'Failed to sign up');
@@ -100,7 +96,7 @@ export default function Create() {
           />
 
           <CustomButton
-            title='Create'
+            title='TextCreate'
             handlePress={createText}
             containerStyles={buttonStyle}
           />
