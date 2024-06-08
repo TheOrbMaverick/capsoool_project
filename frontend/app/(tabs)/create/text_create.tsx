@@ -64,12 +64,12 @@ export default function TextCreate() {
   };
 
   return (
-    <SafeAreaView className='bg-primary h-full'>
+    <SafeAreaView className='bg-primary h-full' edges={['right', 'left', 'bottom']}>
       <ScrollView>
         <View className={containerStyle}>
           <Text
             className='text-2xl text-white
-            text-semibold mt-10 font-psemibold'
+            text-semibold mt-4 font-psemibold'
           >
             Enter your time capsule message
           </Text>

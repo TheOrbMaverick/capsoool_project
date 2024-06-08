@@ -193,7 +193,7 @@ function TextsCapule() {
   const workArea = Platform.OS === 'web' ? 'bg-primary h-full pl-16 pr-16 pt-8' : 'bg-primary h-full';
 
   return (
-    <SafeAreaView className={workArea}>
+    <SafeAreaView className={workArea} edges={['right', 'left', 'bottom']}>
       <FlatList
         data={data}
         keyExtractor={(item) => item.id.toString()}

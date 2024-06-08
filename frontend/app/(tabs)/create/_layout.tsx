@@ -35,9 +35,9 @@ const _layout = () => {
     },
   }}
   >
-    <MaterialTopTabs.Screen name='video_create' options={{title: "Videos"}}/>
-    <MaterialTopTabs.Screen name='image_create' options={{title: "Images"}}/>
-    <MaterialTopTabs.Screen name='text_create' options={{title: "Texts"}}/>
+    <MaterialTopTabs.Screen name='video_create' options={{title: "Video"}}/>
+    <MaterialTopTabs.Screen name='images_create' options={{title: "Image"}}/>
+    <MaterialTopTabs.Screen name='text_create' options={{title: "Text"}}/>
   </MaterialTopTabs>
 )
 };
