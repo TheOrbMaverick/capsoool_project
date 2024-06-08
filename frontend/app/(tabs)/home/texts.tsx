@@ -9,8 +9,8 @@ import TextCapsoool, { TextData } from '@/components/TextCapsoool';
 import CustomButton from '@/components/CustomButton';
 import { buttonStyle } from '@/constants/mystyles';
 import { fetchData } from '@/functions/fetchData';
-import Trusted from '@/components/Trusted';
 import { DataContext } from '@/components/DataContext';
+import UserInfo from '@/components/UserInfo';
 /**
  * TextsCapule Component
  * 
@@ -168,28 +168,6 @@ function TextsCapule() {
     }
   };
 
-
-//   // Example useEffect to fetch or set trusted persons
-//   useEffect(() => {
-//     // Fetch the trusted persons data or set default data
-//     // For example, you can use an API call here
-//     // Here we're simulating with an empty array as if no data was provided
-//     const fetchTrustedPersons = async () => {
-//         try {
-//             // Simulate fetching data
-//             // const response = await fetchYourDataFunction();
-//             // setTrustedPersons(response.data);
-
-//             // For now, we simulate no data
-//             setTrustedPersons([]);
-//         } catch (error) {
-//             console.error('Failed to fetch trusted persons:', error);
-//         }
-//     };
-
-//     fetchTrustedPersons();
-// }, []);
-
   const workArea = Platform.OS === 'web' ? 'bg-primary h-full pl-16 pr-16 pt-8' : 'bg-primary h-full';
 
   return (
@@ -203,37 +181,7 @@ function TextsCapule() {
           />
         )}
         ListHeaderComponent={() => (
-          <View className='my-6 px-4 space-y-6'>
-            <View className='justify-between items-start flex-row mb-6'>
-              <View>
-                <Text className='font-pmedium text-sm text-gray-100'>
-                  Welcome
-                </Text>
-                <Text className='text-2xl font-psemibold text-white'>
-                  {user?.first_name} {user?.last_name}
-                </Text>
-                <Text className='text-gray-100 text-lg font-regular mb-3'>
-                  {user?.email}
-                </Text>
-              </View>
-
-              <View className='mt-1.5'>
-                <Image
-                  className='w-9 h-10'
-                  source={images.logoSmall}
-                  resizeMode='contain'
-                />
-              </View>
-            </View>
-
-            <View className='w-full flex-1 pt-5 pb-8'>
-              <Text className='text-gray-100 text-lg font-regular mb-3'>
-                your trusted people:
-              </Text>
-
-              <Trusted trusted_person={trustedPersons} />
-            </View>
-          </View>
+          <UserInfo user={user} trustedPersons={trustedPersons} />
         )}
         ListEmptyComponent={() => (
           <EmptyState

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { images } from '@/constants'; // Adjust the path to your actual images file
 
-interface TrustedPerson {
+export interface TrustedPerson {
     id: number;
     email?: string;
     first_name?: string;

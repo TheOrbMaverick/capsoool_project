@@ -1,13 +1,7 @@
 import { View, Text, Image, ScrollView, Platform } from 'react-native';
 import { NativeWindStyleSheet } from 'nativewind';
 import { StatusBar } from 'expo-status-bar';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { useEffect } from 'react';
-import { Redirect, router } from 'expo-router';
+import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../constants'
 import CustomButton from '@/components/CustomButton';
