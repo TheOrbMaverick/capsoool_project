@@ -16,7 +16,7 @@ if __name__ == "__main__":
         last_name='Doe',
         phone_number='123-456-7890',
         updated_at=datetime.now(),
-        tp_image='path/to/image1.jpg',
+        tp_image='src/Profile_Picture.jpg',
         author_id=1
     )
 
@@ -26,7 +26,7 @@ if __name__ == "__main__":
         last_name='Smith',
         phone_number='234-567-8901',
         updated_at=datetime.now(),
-        tp_image='path/to/image2.jpg',
+        tp_image='src/IMG_8399_2.jpg',
         author_id=1
     )
 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         last_name='Beam',
         phone_number='345-678-9012',
         updated_at=datetime.now(),
-        tp_image='path/to/image3.jpg',
+        tp_image='src/IMG_3496.HEIC',
         author_id=1
     )
 
@@ -46,7 +46,7 @@ if __name__ == "__main__":
         last_name='Johnson',
         phone_number='456-789-0123',
         updated_at=datetime.now(),
-        tp_image='path/to/image4.jpg',
+        tp_image='src/luffy.jpg',
         author_id=2
     )
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         last_name='Williams',
         phone_number='567-890-1234',
         updated_at=datetime.now(),
-        tp_image='path/to/image5.jpg',
+        tp_image='src/PART.png',
         author_id=2
     )
 

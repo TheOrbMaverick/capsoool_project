@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { View, Platform, Text, Image } from 'react-native';
+import React from 'react';
+import { Platform } from 'react-native';
 import {
   createMaterialTopTabNavigator,
   MaterialTopTabNavigationOptions,
@@ -7,10 +7,6 @@ import {
 } from '@react-navigation/material-top-tabs';
 import { withLayoutContext } from 'expo-router';
 import { ParamListBase, TabNavigationState } from '@react-navigation/native';
-import UserInfo from '@/components/UserInfo'; // Adjust the import path as needed
-import { UserContext } from '@/components/UserContext'; // Adjust the import path as needed
-import { images } from '@/constants'; // Adjust the import path as needed
-import { DataContext } from '@/components/DataContext';
 
 const { Navigator } = createMaterialTopTabNavigator();
 
@@ -24,10 +20,6 @@ export const MaterialTopTabs = withLayoutContext<
 const isWeb = Platform.OS === 'web';
 
 const _layout = () => {
-  const { user } = useContext(UserContext);
-  const { allData } = useContext(DataContext);
-
-  const [trustedPersons] = allData || [[]];
 
   return (
     <MaterialTopTabs

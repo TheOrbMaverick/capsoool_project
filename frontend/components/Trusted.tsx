@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Image } from 'react-native';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { images } from '@/constants'; // Adjust the path to your actual images file
+import { images } from '@/constants';
 
 export interface TrustedPerson {
     id: number;
@@ -30,7 +30,8 @@ const defaultTrustedPersons: TrustedPerson[] = [
 const TrustedItem: React.FC<TrustedItemProps> = ({ item }) => {
     return (
         <View className='mr-2'>
-            <TouchableOpacity>
+            <TouchableOpacity
+            >
                 <View className='border-light_primary rounded p-2 items-center'>
                     <Image
                         className='w-auto h-12 justify-center mt-0 pt-0 opacity-50'

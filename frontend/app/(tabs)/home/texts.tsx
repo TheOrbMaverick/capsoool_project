@@ -30,8 +30,6 @@ function TextsCapule() {
 
   const [texts, trustedPersons, videos, image] = allData || [[], [], [], []];
 
-  console.log(texts)
-
   // State hooks
   const [data, setData] = useState<TextData[]>([]);
   const [refreshing, setRefreshing] = useState(false);

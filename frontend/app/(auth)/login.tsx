@@ -59,7 +59,7 @@ export default function Login() {
   };
 
   return (
-    <SafeAreaView className='bg-primary h-full pt-24'>
+    <SafeAreaView className='bg-primary h-full pt-20'>
       <ScrollView>
         <View className={containerStyle}>
           <Image

@@ -15,11 +15,11 @@ const UserInfo: React.FC<UserInfoProps> = ({ user, trustedPersons }) => {
     <View className='px-2 space-y-2'>
       <View className='justify-between items-start flex-row mb-0'>
         <View>
-          <Text className='font-pmedium text-sm text-gray-100'>
+          <Text className='font-pmedium text-sm text-gray-100 pt-6'>
             Welcome
           </Text>
           <Text className='text-2xl font-psemibold text-white'>
-            {user?.first_name}
+            {user?.first_name} {user?.last_name}
           </Text>
           <Text className='text-gray-100 text-lg font-regular mb-3'>
             {user?.email}
