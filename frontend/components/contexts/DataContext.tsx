@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, Dispatch, SetStateAction, PropsWithChildren } from 'react';
-import { UserContext } from '@/components/UserContext';
+import { UserContext } from '@/components/contexts/UserContext';
 
 interface Text {
   id: number;

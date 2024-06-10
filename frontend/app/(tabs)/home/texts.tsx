@@ -4,12 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '@/constants';
 import FormField from '@/components/FormField';
 import EmptyState from '@/components/EmptyState';
-import { UserContext } from '@/components/UserContext';
+import { UserContext } from '@/components/contexts/UserContext';
 import TextCapsoool, { TextData } from '@/components/TextCapsoool';
 import CustomButton from '@/components/CustomButton';
 import { buttonStyle } from '@/constants/mystyles';
 import { fetchData } from '@/functions/fetchData';
-import { DataContext } from '@/components/DataContext';
+import { DataContext } from '@/components/contexts/DataContext';
 import UserInfo from '@/components/UserInfo';
 /**
  * TextsCapule Component

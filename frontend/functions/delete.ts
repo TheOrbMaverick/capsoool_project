@@ -2,7 +2,7 @@ import { TextData } from "@/components/TextCapsoool";
 import { fetchData } from "./fetchData";
 import { Alert } from "react-native";
 import { useContext, useState } from "react";
-import { UserContext } from "@/components/UserContext";
+import { UserContext } from "@/components/contexts/UserContext";
 
 
 const { user } = useContext(UserContext);

@@ -1,7 +1,7 @@
-import { DataContext } from '@/components/DataContext';
+import { DataContext } from '@/components/contexts/DataContext';
 import EmptyState from '@/components/EmptyState';
 import TextCapsoool, { TextData } from '@/components/TextCapsoool';
-import { UserContext } from '@/components/UserContext';
+import { UserContext } from '@/components/contexts/UserContext';
 import UserInfo from '@/components/UserInfo';
 import { deleteItem } from '@/functions/delete';
 import { fetchData } from '@/functions/fetchData';

@@ -6,7 +6,7 @@ import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
 import { Link } from 'expo-router';
-import { UserContext } from '@/components/UserContext';
+import { UserContext } from '@/components/contexts/UserContext';
 import { buttonStyle, containerStyle, signupText } from '@/constants/mystyles';
 
 

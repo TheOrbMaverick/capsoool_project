@@ -2,7 +2,7 @@ import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Image, ScrollView, Text, TouchableOpacity, Pressable } from "react-native";
 import { images } from "@/constants";
-import { UserContext } from "@/components/UserContext";
+import { UserContext } from "@/components/contexts/UserContext";
 import { useContext } from "react";
 
 const Profile = () => {

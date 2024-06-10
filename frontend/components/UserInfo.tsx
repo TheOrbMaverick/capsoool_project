@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Trusted from '@/components/Trusted';
-import { User } from './UserContext';
+import { User } from './contexts/UserContext';
 import { TrustedPerson } from '@/components/Trusted';
 
 interface UserInfoProps {

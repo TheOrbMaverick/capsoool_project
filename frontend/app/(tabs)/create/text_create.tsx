@@ -5,7 +5,7 @@ import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
 import { buttonStyle, containerStyle, signupText } from '@/constants/mystyles';
-import { UserContext } from '@/components/UserContext';
+import { UserContext } from '@/components/contexts/UserContext';
 
 export default function TextCreate() {
 

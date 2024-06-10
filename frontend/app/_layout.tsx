@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import UserProvider from '@/components/UserContext';
-import DataProvider from '@/components/DataContext';
+import UserProvider from '@/components/contexts/UserContext';
+import DataProvider from '@/components/contexts/DataContext';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
