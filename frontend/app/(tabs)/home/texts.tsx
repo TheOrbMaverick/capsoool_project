@@ -155,7 +155,7 @@ function TextsCapule() {
         Alert.alert('Success', `You have updated your text Capsoool!`);
         setIsModalVisible(false);
         const fetchUrl = `http://localhost:5000/home/${user?.id}`;
-        await fetchData(fetchUrl, setData, setIsLoading); // Refresh data after edit
+        await fetchData(fetchUrl, setData, setIsLoading);
       } else {
         const error = await response.json();
         Alert.alert('Error', error.message || 'Failed to update text Capsoool');

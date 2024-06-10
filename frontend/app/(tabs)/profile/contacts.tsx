@@ -1,49 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList, RefreshControl } from 'react-native';
 import * as Contacts from 'expo-contacts';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import ContactList, { ContactData } from '@/components/ContactList';
 
-interface AppContact {
-  id: string;
-  name: string;
-}
 
 export default function Contact() {
-  const [contact, setContact] = useState<AppContact | null>(null);
+  const [contacts, setContacts] = useState<Contacts.Contact[]>([]);
+  const [error, setError] = useState<string>("")
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     (async () => {
       const { status } = await Contacts.requestPermissionsAsync();
       if (status === 'granted') {
         const { data } = await Contacts.getContactsAsync({
-          fields: [Contacts.Fields.Emails],
+          fields: [Contacts.Fields.FirstName, Contacts.Fields.LastName, Contacts.Fields.Emails, Contacts.Fields.PhoneNumbers],
         });
 
         if (data.length > 0) {
-          const contactData = data[0];
-
-          // Ensure contactData has an id and a name
-          if (contactData.id && contactData.name) {
-            const formattedContact: AppContact = {
-              id: contactData.id,
-              name: contactData.name,
-            };
-            setContact(formattedContact);
-          }
+            setContacts(data)
+        }
+        else {
+            setError("No contacts found")
         }
       }
     })();
   }, []);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      {contact ? (
-        <View>
-          <Text>Name: {contact.name}</Text>
-        </View>
-      ) : (
-        <Text>No contact selected</Text>
-      )}
-    </View>
+    <SafeAreaView>
+        <FlatList
+            data={contacts}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }: { item: ContactData }) => (
+            <ContactList data={item} onPressItem={() => console.log(item)}/>
+            )}
+            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        />
+    </SafeAreaView>
   );
 }
 
