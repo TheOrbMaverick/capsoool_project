@@ -178,9 +178,6 @@ function TextsCapule() {
             onLongPressItem={() => deleteItem(item)}
           />
         )}
-        ListHeaderComponent={() => (
-          <UserInfo user={user} trustedPersons={trustedPersons} />
-        )}
         ListEmptyComponent={() => (
           <EmptyState
             title="Create your first capsoool"

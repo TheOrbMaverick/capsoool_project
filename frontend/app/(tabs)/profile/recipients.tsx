@@ -4,8 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from 'expo-router'
 
 const Recipients = () => {
-  const navigation = useNavigation();
-  navigation.setOptions({ headerShown: false });
   
   return (
     <SafeAreaView className='bg-primary flex-1'>
