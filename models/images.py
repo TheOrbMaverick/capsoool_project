@@ -4,11 +4,17 @@ from sqlalchemy.orm import relationship
 from datetime import datetime
 
 class Image(BaseModel):
-    __tablename__ = "images"
+    """Model for storing image metadata."""
+    __tablename__ = "images"  # Specify the table name
 
-    filename = Column(String, nullable = False)
-    filepath = Column(String, nullable = False) 
+    filename = Column(String, nullable=False)
+    """Name of the image file"""
+    
+    filepath = Column(String, nullable=False)
+    """Path where the image file is stored"""
+    
     size = Column(Integer)
+    """Size of the image file in bytes"""
 
-    # Define the author column
     author_id = Column(ForeignKey('users.id'))
+    """ID of the user who uploaded the image"""

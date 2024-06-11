@@ -7,6 +7,7 @@ from models.user import User
 from datetime import datetime
 from models import session
 
+""" Run this file to add default data to the sqlite database"""
 
 if __name__ == "__main__":
 
