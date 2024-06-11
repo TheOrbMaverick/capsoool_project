@@ -322,6 +322,47 @@ def all_user_data(user_id):
 
     return jsonify(text_list, trust_list, video_list, image_list)
 
+@app.route('/newContact', methods=['POST'])
+def newContact():
+    """
+    Contact route to create a new contact.
+    
+    Request Body:
+        firstName (str): User's first name
+        lastName (str): User's last name
+        email (str): User's email
+        phoneNumber (str): User's phone number
+    
+    Returns:
+        response (json): Success message or error message
+    """
+    data = request.json
+    if not data:
+        return jsonify({"message": "No input data provided"}), 400
+
+    first_name = data.get('firstName')
+    last_name = data.get('lastName')
+    email = data.get('email')
+    phone_number = data.get('phoneNumber')
+
+    if not first_name or not last_name or not email:
+        return jsonify({"message": "Missing fields"}), 400
+
+    new_contact = Recipient(
+        first_name=first_name,
+        last_name=last_name,
+        email=email,
+        phone_number=phone_number
+    )
+
+    try:
+        session.add(new_contact)
+        session.commit()
+        return jsonify({"message": "User created successfully"}), 201
+    except Exception as e:
+        session.rollback()
+        return jsonify({"message": "An error occurred", "error": str(e)}), 500
+
 if __name__ == "__main__":
     create_table()
     app.config["SERVER_NAME"] = "localhost:5000"

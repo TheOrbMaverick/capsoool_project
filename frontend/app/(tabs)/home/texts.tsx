@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState, Dispatch, SetStateAction } from 'react';
-import { View, Text, FlatList, Image, RefreshControl, Platform, Alert, Modal, TouchableOpacity } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, FlatList, RefreshControl, Platform, Alert, Modal, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { images } from '@/constants';
 import FormField from '@/components/FormField';
 import EmptyState from '@/components/EmptyState';
 import { UserContext } from '@/components/contexts/UserContext';
@@ -10,7 +9,8 @@ import CustomButton from '@/components/CustomButton';
 import { buttonStyle } from '@/constants/mystyles';
 import { fetchData } from '@/functions/fetchData';
 import { DataContext } from '@/components/contexts/DataContext';
-import UserInfo from '@/components/UserInfo';
+import { deleteItem } from '@/functions/delete';
+
 /**
  * TextsCapule Component
  * 
@@ -78,58 +78,6 @@ function TextsCapule() {
   };
 
   /**
-   * Prompts user to delete a specific text item
-   * @param {TextData} item - The text item to be deleted
-   */
-  const deleteItem = (item: TextData) => {
-    Alert.alert(
-      'Delete',
-      'Do you want to delete this capsoool?',
-      [
-        {
-          text: 'No',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel'
-        },
-        {
-          text: 'Delete',
-          onPress: () => handleDelete(item),
-          style: 'destructive'
-        }
-      ]
-    );
-  };
-
-  /**
-   * Handles the deletion of a text item
-   * @param {TextData} item - The text item to be deleted
-   */
-  const handleDelete = async (item: TextData) => {
-    try {
-      const url = `http://localhost:5000/home/${user?.id}/text/${item.id}`;
-      const method = 'DELETE';
-
-      const response = await fetch(url, {
-        method: method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const result = await response.json();
-      console.log('Item deleted:', result);
-      Alert.alert('Success', 'The item has been deleted.');
-    } catch (error) {
-      console.error('Error deleting item:', error);
-      Alert.alert('Error', 'There was a problem deleting the item.');
-    }
-  };
-
-  /**
    * Handles the update of a text item
    */
   const editText = async () => {
@@ -175,7 +123,7 @@ function TextsCapule() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }: { item: TextData }) => (
           <TextCapsoool data={item} onPressItem={() => openItem(item)} 
-            onLongPressItem={() => deleteItem(item)}
+            onLongPressItem={() => deleteItem(item, user, setData)}
           />
         )}
         ListEmptyComponent={() => (
