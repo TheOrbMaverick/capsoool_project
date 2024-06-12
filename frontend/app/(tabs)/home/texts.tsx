@@ -10,6 +10,7 @@ import { buttonStyle } from '@/constants/mystyles';
 import { fetchData } from '@/functions/fetchData';
 import { DataContext } from '@/components/contexts/DataContext';
 import { deleteItem } from '@/functions/delete';
+import { router } from 'expo-router';
 
 /**
  * TextsCapule Component
@@ -28,10 +29,10 @@ function TextsCapule() {
   const { user } = useContext(UserContext);
   const { allData } = useContext(DataContext);
 
-  const [texts, trustedPersons, videos, image] = allData || [[], [], [], []];
+  const [texts] = allData || [[]];
 
   // State hooks
-  const [data, setData] = useState<TextData[]>([]);
+  const [updatedText, setTexts] = useState();
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -50,8 +51,8 @@ function TextsCapule() {
 
   // Fetch data when the component mounts or user changes
   useEffect(() => {
-    fetchData(url, setData, setIsLoading);
-  }, [user]);
+    fetchData(url, setTexts, setIsLoading);
+  }, [texts, allData]);
 
   /**
    * Refresh control callback
@@ -82,9 +83,9 @@ function TextsCapule() {
    */
   const editText = async () => {
     try {
-      const url = `http://localhost:5000/home/${user?.id}/text/${form.id}`;
+      const editurl = `http://localhost:5000/home/${user?.id}/text/${form.id}`;
       const method = 'PUT';
-      const response = await fetch(url, {
+      const response = await fetch(editurl, {
         method,
         headers: {
           'Content-Type': 'application/json',
@@ -96,14 +97,17 @@ function TextsCapule() {
           author_id: user?.id,
         }),
       });
-
+  
       if (response.ok) {
         const result = await response.json();
-        console.log(result);
         Alert.alert('Success', `You have updated your text Capsoool!`);
         setIsModalVisible(false);
-        const fetchUrl = `http://localhost:5000/home/${user?.id}`;
-        await fetchData(fetchUrl, setData, setIsLoading);
+        
+        setTimeout(() => {
+          fetchData(url, setTexts);
+          router.push('/home/texts');
+        }, 1000);
+        
       } else {
         const error = await response.json();
         Alert.alert('Error', error.message || 'Failed to update text Capsoool');
@@ -119,11 +123,11 @@ function TextsCapule() {
   return (
     <SafeAreaView className={workArea} edges={['right', 'left', 'bottom']}>
       <FlatList
-        data={data}
+        data={updatedText}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }: { item: TextData }) => (
           <TextCapsoool data={item} onPressItem={() => openItem(item)} 
-            onLongPressItem={() => deleteItem(item, user, setData)}
+            onLongPressItem={() => deleteItem(item, user, setTexts)}
           />
         )}
         ListEmptyComponent={() => (
