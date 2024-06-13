@@ -14,7 +14,7 @@ if __name__ == "__main__":
     new_video_1 = Video(
 
         title= 'Video 1',
-        video= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        video= 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
         recipients= 'Julia Stille, Brad Adolphus, Young E. Chomiachukwu',
         size= 204800,
         thumbnail='https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     new_video_2 = Video(
 
         title= 'Video 2',
-        video= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        video= 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
         recipients= 'Radical Ebube',
         size= 409600,
         thumbnail='https://www.gstatic.com/webp/gallery3/1.sm.png',
@@ -34,10 +34,10 @@ if __name__ == "__main__":
     new_video_3 = Video(
 
         title= 'Video 3',
-        video= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        video= 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
         recipients= 'Chioma Anwo, Prestige Ebube',
         size= 102400,
-        thumbnail='https://www.placecage.com/300/200',
+        thumbnail='https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         author_id= 1
     )
     

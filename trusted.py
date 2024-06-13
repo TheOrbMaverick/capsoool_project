@@ -17,7 +17,7 @@ if __name__ == "__main__":
         last_name='Doe',
         phone_number='123-456-7890',
         updated_at=datetime.now(),
-        tp_image='https://via.placeholder.com/300/09f/fff.png',
+        tp_image='https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         author_id=1
     )
 
@@ -27,7 +27,7 @@ if __name__ == "__main__":
         last_name='Smith',
         phone_number='234-567-8901',
         updated_at=datetime.now(),
-        tp_image='https://via.placeholder.com/300/09f/fff.png',
+        tp_image='https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         author_id=1
     )
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         last_name='Beam',
         phone_number='345-678-9012',
         updated_at=datetime.now(),
-        tp_image='https://via.placeholder.com/300/09f/fff.png',
+        tp_image='https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         author_id=1
     )
 
@@ -47,7 +47,7 @@ if __name__ == "__main__":
         last_name='Johnson',
         phone_number='456-789-0123',
         updated_at=datetime.now(),
-        tp_image='https://via.placeholder.com/300/09f/fff.png',
+        tp_image='https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         author_id=2
     )
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
         last_name='Williams',
         phone_number='567-890-1234',
         updated_at=datetime.now(),
-        tp_image='https://via.placeholder.com/300/09f/fff.png',
+        tp_image='https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         author_id=2
     )
 

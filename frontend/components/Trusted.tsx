@@ -32,12 +32,14 @@ const TrustedItem: React.FC<TrustedItemProps> = ({ item }) => {
         <View className='mr-2'>
             <TouchableOpacity
             >
-                <View className='border-light_primary rounded p-2 items-center'>
-                    <Image
-                        className='w-auto h-12 justify-center mt-0 pt-0 opacity-50'
-                        source={item.first_name === 'add trusted person' ? images.add_user : { uri: item.tp_image } }
-                        resizeMode='contain'
-                    />
+                <View className='rounded p-5 items-center mb-5'>
+                    <View className="w-[46px] h-[46px] mb-2 rounded-lg border border-secondary flex justify-center p-0.5">
+                        <Image
+                        source={item.first_name === 'add trusted person' ? images.add_user : { uri: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' } }
+                        className="w-full h-full rounded-lg"
+                        resizeMode="cover"
+                        />
+                    </View>
                     <Text className='text-white font-pextralight'>{item.first_name} {item.last_name}</Text>
                 </View>
             </TouchableOpacity>

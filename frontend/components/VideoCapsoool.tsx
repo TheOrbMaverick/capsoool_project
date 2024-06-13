@@ -49,9 +49,8 @@ const VideoCapsoool: React.FC<VideoData> = ({ title, recipients, thumbnail, vide
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
           shouldPlay
-          onPlaybackStatusUpdate={(status) => {
-            if (status.isLoaded) {
-              setPlay(false);
+          onPlaybackStatusUpdate={(playbackStatus) => {
+            if (playbackStatus.isLoaded) {
             }
           }}
         />
