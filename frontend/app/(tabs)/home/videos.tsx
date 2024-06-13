@@ -1,6 +1,6 @@
 import { DataContext } from '@/components/contexts/DataContext';
 import EmptyState from '@/components/EmptyState';
-import TextCapsoool, { TextData } from '@/components/TextCapsoool';
+import VideoCapsoool, { VideoData } from '@/components/VideoCapsoool';
 import { UserContext } from '@/components/contexts/UserContext';
 import UserInfo from '@/components/UserInfo';
 import { fetchData } from '@/functions/fetchData';
@@ -9,7 +9,6 @@ import { View, Text, Animated, ScrollView, Alert } from 'react-native';
 import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { deleteItem } from '@/functions/delete';
-import VideoCapsoool from '@/components/VideoCapsoool';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = 50;
@@ -21,26 +20,35 @@ const Videos = () => {
   const [texts, trustedPersons, videos, image] = allData || [[], [], [], []];
 
   // State hooks
-  const [data, setData] = useState<TextData[]>([]);
+  const [videoData, setVideoData] = useState<VideoData[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
 
+  // videodata: {
+  //   title='', 
+  //   creator='',
+  //   avatar='',
+  //   thumbnail='',
+  //   video='http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+  // }
 
   // Form state
   const [form, setForm] = useState({
     id: 0,
     title: '',
-    recipients: '',
-    content: '',
+    creator: '',
+    avatar: '',
+    thumbnail: '',
+    video: ''
   });
 
   const url = `http://localhost:5000/home/${user?.id}`;
 
   // Fetch data when the component mounts or user changes
   useEffect(() => {
-    fetchData(url, setData, setIsLoading);
+    fetchData(url, setVideoData, setIsLoading);
   }, [user]);
 
   /**
@@ -57,31 +65,36 @@ const Videos = () => {
    * Opens the modal to edit a specific text item
    * @param {TextData} item - The text item to be edited
    */
-  const openItem = (item: TextData) => {
+  const openItem = (item: VideoData) => {
     setForm({
       id: item.id,
       title: item.title,
-      recipients: item.recipients,
-      content: item.content,
+      creator: item.creator,
+      avatar: item.avatar,
+      thumbnail: item.thumbnail,
+      video: item.video
     });
     setIsModalVisible(true);
   };
 
+  const titl = 'Ita'
+  const uri = 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'
+
   return (
     <SafeAreaView className='bg-primary h-full' edges={['right', 'left', 'bottom']}>
       <FlatList
-        data={data}
+        data={videoData}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }: { item: TextData }) => (
+        renderItem={({ item }: { item: VideoData }) => (
           <VideoCapsoool 
-            title='' 
-            creator=''
-            avatar=''
-            thumbnail=''
-            video=''
+            id={item.id}
+            title={item.title} 
+            creator='The man'
+            avatar={require('@/assets/images/profile.png')}
+            thumbnail={require('@/assets/images/thumbnail.png')}
+            video={uri}
             >
-              
-            </VideoCapsoool>
+          </VideoCapsoool>
         )}
         ListHeaderComponent={() => (
           <UserInfo user={user} trustedPersons={trustedPersons} />

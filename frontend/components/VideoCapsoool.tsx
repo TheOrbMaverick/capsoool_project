@@ -6,7 +6,8 @@ import { icons } from "../constants";
 
 
 // Define the prop types
-interface VideoCapsooolProps {
+export interface VideoData {
+    id: number,
     title: string;
     creator: string;
     avatar: string;
@@ -15,7 +16,7 @@ interface VideoCapsooolProps {
   }
 
   
-const VideoCapsoool: React.FC<VideoCapsooolProps> = ({ title, creator, avatar, thumbnail, video }) => {
+const VideoCapsoool: React.FC<VideoData> = ({ title, creator, avatar, thumbnail, video }) => {
   const [play, setPlay] = useState(false);
 
   return (
@@ -59,7 +60,9 @@ const VideoCapsoool: React.FC<VideoCapsooolProps> = ({ title, creator, avatar, t
           useNativeControls
           shouldPlay
           onPlaybackStatusUpdate={(status) => {
+            if (status.isLoaded) {
               setPlay(false);
+            }
           }}
         />
       ) : (

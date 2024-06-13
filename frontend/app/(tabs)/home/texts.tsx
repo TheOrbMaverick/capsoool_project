@@ -52,7 +52,7 @@ function TextsCapule() {
   // Fetch data when the component mounts or user changes
   useEffect(() => {
     fetchData(url, setTexts, setIsLoading);
-  }, [texts, allData]);
+  }, [texts]);
 
   /**
    * Refresh control callback
