@@ -38,7 +38,17 @@ interface Trusted {
   author_id: number;
 }
 
-type Data = [Text[], Trusted[], Video[], Image[]];
+interface Recipient {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  created_at: string;
+  updated_at: string;
+  author_id: number;
+}
+
+type Data = [Text[], Trusted[], Video[], Image[], Recipient[]];
 
 type ContextState = {
   allData: Data | null;

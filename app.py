@@ -270,6 +270,7 @@ def all_user_data(user_id):
     videos = session.query(Video).filter_by(author_id=user_id).all()
     images = session.query(Image).filter_by(author_id=user_id).all()
     trusted = session.query(Trusted).filter_by(author_id=user_id).all()
+    recipients = session.query(Recipient).filter_by(author_id=user_id).all()
 
     text_list = [
         {
@@ -320,7 +321,20 @@ def all_user_data(user_id):
         for trust in trusted
     ]
 
-    return jsonify(text_list, trust_list, video_list, image_list)
+    recipient_list = [
+        {
+            'id': recipient.id,
+            'first_name': recipient.first_name,
+            'last_name': recipient.last_name,
+            'email': recipient.email,
+            'created_at': recipient.created_at,
+            'updated_at': recipient.updated_at,
+            'author_id': recipient.author_id
+        }
+        for recipient in recipients
+    ]
+
+    return jsonify(text_list, trust_list, video_list, image_list, recipient_list)
 
 @app.route('/newContact', methods=['POST'])
 def newContact():
