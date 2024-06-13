@@ -288,9 +288,11 @@ def all_user_data(user_id):
     video_list = [
         {
             'id': video.id,
-            'title': video.filename,
-            'content': video.filepath,
-            'recipients': video.thumbnail,
+            'title': video.title,
+            'video': video.video,
+            'recipients': video.recipients,
+            'size': video.size,
+            'thumbnail': video.thumbnail,
             'created_at': video.created_at,
             'author_id': video.author_id
         }

@@ -34,9 +34,9 @@ const _layout = () => {
         },
       }}
     >
+      <MaterialTopTabs.Screen name='texts' options={{ title: "Texts" }} />
       <MaterialTopTabs.Screen name='videos' options={{ title: "Videos" }} />
       <MaterialTopTabs.Screen name='images' options={{ title: "Images" }} />
-      <MaterialTopTabs.Screen name='texts' options={{ title: "Texts" }} />
     </MaterialTopTabs>
   );
 };

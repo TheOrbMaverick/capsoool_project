@@ -7,17 +7,19 @@ class Video(BaseModel):
     """Model for storing video metadata."""
     __tablename__ = "videos"  # Specify the table name
 
-    filename = Column(String, nullable=False)
+    title = Column(String, nullable=False)
     """Name of the video file"""
     
-    filepath = Column(String, nullable=False)
+    video = Column(String, nullable=False)
     """Path where the video file is stored"""
-    
+
+    recipients = Column(String)
+
     size = Column(Integer, nullable=False)
     """Size of the video file in bytes"""
-    
-    thumbnail = Column(String)
-    """Path to the video's thumbnail image"""
+
+    thumbnail = Column(String, nullable=False)
+    """Path where the video file is stored"""
 
     author_id = Column(ForeignKey('users.id'))
     """ID of the user who uploaded the video"""

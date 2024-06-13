@@ -1,8 +1,8 @@
-import { TextData } from "@/components/TextCapsoool";
 import { fetchData } from "./fetchData";
 import { Alert } from "react-native";
 import { useState } from "react";
 import { User, } from "@/components/contexts/UserContext";
+import { TextData } from "@/components/contexts/DataContext";
 
 
 export const deleteItem = (item: TextData, user: User | null, setData?: (data: any) => void) => {

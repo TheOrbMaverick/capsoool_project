@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, Dispatch, SetStateAction, PropsWithChildren } from 'react';
 import { UserContext } from '@/components/contexts/UserContext';
 
-interface Text {
+export interface TextData {
   id: number;
   title: string;
   content: string;
@@ -11,13 +11,12 @@ interface Text {
   author_id: number;
 }
 
-interface Video {
-  id: number;
+export interface VideoData {
+  id: number,
   title: string;
-  content: string;
   recipients: string;
-  created_at: string;
-  author_id: number;
+  thumbnail: string;
+  video: string;
 }
 
 interface Image {
@@ -48,7 +47,7 @@ interface Recipient {
   author_id: number;
 }
 
-type Data = [Text[], Trusted[], Video[], Image[], Recipient[]];
+type Data = [TextData[], Trusted[], VideoData[], Image[], Recipient[]];
 
 type ContextState = {
   allData: Data | null;

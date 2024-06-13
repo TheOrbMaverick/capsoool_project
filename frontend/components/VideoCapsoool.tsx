@@ -1,22 +1,12 @@
 import { useState } from "react";
 import { ResizeMode, Video } from "expo-av";
 import { View, Text, TouchableOpacity, Image } from "react-native";
+import { VideoData } from "./contexts/DataContext";
 
 import { icons } from "../constants";
 
-
-// Define the prop types
-export interface VideoData {
-    id: number,
-    title: string;
-    creator: string;
-    avatar: string;
-    thumbnail: string;
-    video: string;
-  }
-
   
-const VideoCapsoool: React.FC<VideoData> = ({ title, creator, avatar, thumbnail, video }) => {
+const VideoCapsoool: React.FC<VideoData> = ({ title, recipients, thumbnail, video }) => {
   const [play, setPlay] = useState(false);
 
   return (
@@ -25,7 +15,7 @@ const VideoCapsoool: React.FC<VideoData> = ({ title, creator, avatar, thumbnail,
         <View className="flex justify-center items-center flex-row flex-1">
           <View className="w-[46px] h-[46px] rounded-lg border border-secondary flex justify-center items-center p-0.5">
             <Image
-              source={{ uri: avatar }}
+              source={{ uri: thumbnail }}
               className="w-full h-full rounded-lg"
               resizeMode="cover"
             />
@@ -42,7 +32,7 @@ const VideoCapsoool: React.FC<VideoData> = ({ title, creator, avatar, thumbnail,
               className="text-xs text-gray-100 font-pregular"
               numberOfLines={1}
             >
-              {creator}
+              {recipients}
             </Text>
           </View>
         </View>

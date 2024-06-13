@@ -4,13 +4,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import FormField from '@/components/FormField';
 import EmptyState from '@/components/EmptyState';
 import { UserContext } from '@/components/contexts/UserContext';
-import TextCapsoool, { TextData } from '@/components/TextCapsoool';
+import TextCapsoool from '@/components/TextCapsoool';
 import CustomButton from '@/components/CustomButton';
 import { buttonStyle } from '@/constants/mystyles';
 import { fetchData } from '@/functions/fetchData';
 import { DataContext } from '@/components/contexts/DataContext';
 import { deleteItem } from '@/functions/delete';
 import { router } from 'expo-router';
+import { TextData } from '@/components/contexts/DataContext';
 
 /**
  * TextsCapule Component

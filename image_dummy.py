@@ -1,21 +1,42 @@
-# Dummy Image Data
-images = [
-    {
-        'filename': 'image1.jpg',
-        'filepath': 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-        'size': 204800,  # 200 KB in bytes
-        'author_id': 1
-    },
-    {
-        'filename': 'image2.jpg',
-        'filepath': 'src/luffy.jpeg',
-        'size': 409600,  # 400 KB in bytes
-        'author_id': 2
-    },
-    {
-        'filename': 'image3.jpg',
-        'filepath': '/images/image3.jpg',
-        'size': 102400,  # 100 KB in bytes
-        'author_id': 3
-    }
-]
+from models.images import Image
+from models.trusted_people import Trusted
+from models.recipients import Recipient
+from models.videos import Video
+from models.texts import Text
+from models.user import User
+from datetime import datetime
+from models import session
+
+""" Run this file to add default data to the sqlite database"""
+
+if __name__ == "__main__":
+
+    new_image_1 = Image(
+
+        filename= 'image1.jpg',
+        filepath= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        size= 204800,
+        author_id= 1
+    )
+
+    new_image_2 = Image(
+
+        filename= 'image2.jpg',
+        filepath= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        size= 409600,
+        author_id= 1
+    )
+
+    new_image_3 = Image(
+
+        filename= 'image3.jpg',
+        filepath= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        size= 102400,
+        author_id= 1
+    )
+    
+    # Add users to the session and commit
+    session.add(new_image_1)
+    session.add(new_image_2)
+    session.add(new_image_3)
+    session.commit()

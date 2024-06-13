@@ -1,16 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-
-// Define the type for the text data
-export interface TextData {
-    id: number;
-    title: string;
-    content: string;
-    recipients: string;
-    created_at: string;
-    updated_at: string;
-    author_id: number;
-}
+import { TextData } from './contexts/DataContext';
 
 // Define the props for the component
 interface TextComponentProps {
