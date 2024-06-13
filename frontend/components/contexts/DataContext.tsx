@@ -17,14 +17,15 @@ export interface VideoData {
   recipients: string;
   thumbnail: string;
   video: string;
+  created_at: string;
 }
 
-interface Image {
+export interface ImageData {
   id: number;
-  title: string;
-  content: string;
+  filename: string;
+  filepath: string;
+  recipients: string;
   created_at: string;
-  author_id: number;
 }
 
 interface Trusted {
@@ -47,7 +48,7 @@ interface Recipient {
   author_id: number;
 }
 
-type Data = [TextData[], Trusted[], VideoData[], Image[], Recipient[]];
+type Data = [TextData[], Trusted[], VideoData[], ImageData[], Recipient[]];
 
 type ContextState = {
   allData: Data | null;

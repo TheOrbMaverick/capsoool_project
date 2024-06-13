@@ -12,6 +12,8 @@ class Image(BaseModel):
     
     filepath = Column(String, nullable=False)
     """Path where the image file is stored"""
+
+    recipients = Column(String)
     
     size = Column(Integer)
     """Size of the image file in bytes"""

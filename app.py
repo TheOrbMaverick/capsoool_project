@@ -302,8 +302,9 @@ def all_user_data(user_id):
     image_list = [
         {
             'id': image.id,
-            'title': image.filename,
-            'content': image.filepath,
+            'filename': image.filename,
+            'filepath': image.filepath,
+            'recipients': image.recipients,
             'created_at': image.created_at,
             'author_id': image.author_id
         }

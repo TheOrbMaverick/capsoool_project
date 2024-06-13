@@ -77,6 +77,7 @@ const Videos = () => {
             recipients={item.recipients}
             thumbnail={item.thumbnail}
             video={item.video}
+            created_at={item.created_at}
           />
         )}
         ListHeaderComponent={() => (

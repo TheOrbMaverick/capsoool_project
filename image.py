@@ -15,6 +15,7 @@ if __name__ == "__main__":
 
         filename= 'image1.jpg',
         filepath= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        recipients= 'Radical Ebube',
         size= 204800,
         author_id= 1
     )
@@ -23,6 +24,7 @@ if __name__ == "__main__":
 
         filename= 'image2.jpg',
         filepath= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        recipients= 'Ekoh-Chukwukelu Chukwudubem, Liana Rida',
         size= 409600,
         author_id= 1
     )
@@ -31,6 +33,7 @@ if __name__ == "__main__":
 
         filename= 'image3.jpg',
         filepath= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        recipients= 'Manny Lou, Ellie Joel',
         size= 102400,
         author_id= 1
     )
