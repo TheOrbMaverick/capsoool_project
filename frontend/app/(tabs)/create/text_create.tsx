@@ -50,13 +50,11 @@ export default function TextCreate() {
       });
 
       if (response.ok) {
-        const result = await response.json();
-        console.log(result)
         Alert.alert('Success', 'You have created a text Capsoool!');
         router.push('/home/texts');
       } else {
         const error = await response.json();
-        Alert.alert('Error', error.message || 'Failed to sign up');
+        Alert.alert('Error', error.message || 'Failed to create text Capsoool up');
       }
     } catch (error) {
       Alert.alert('Error', 'An unexpected error occurred. Please try again later.');
@@ -96,7 +94,7 @@ export default function TextCreate() {
           />
 
           <CustomButton
-            title='TextCreate'
+            title='Text Create'
             handlePress={createText}
             containerStyles={buttonStyle}
           />

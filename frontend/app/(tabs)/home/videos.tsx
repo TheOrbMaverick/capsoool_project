@@ -18,10 +18,8 @@ const Videos = () => {
   const { allData } = useContext(DataContext);
 
   const [texts, trustedPersons, videos] = allData || [[], [], [], [], []];
-  console.log(videos)
 
   // State hooks
-  const [videoData, setVideoData] = useState<VideoData[]>();
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -35,10 +33,6 @@ const Videos = () => {
     video: ''
   });
 
-  useEffect(() => {
-    setVideoData(videos);
-    setIsLoading(false);
-  }, []);
 
   /**
    * Refresh control callback
@@ -68,7 +62,7 @@ const Videos = () => {
   return (
     <SafeAreaView className='bg-primary h-full' edges={['right', 'left', 'bottom']}>
       <FlatList
-        data={videoData}
+        data={videos}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }: { item: VideoData }) => (
           <VideoCapsoool 

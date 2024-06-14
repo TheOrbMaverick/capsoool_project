@@ -9,7 +9,7 @@ const ImageCapsoool: React.FC<ImageData> = ({ filename, filepath, recipients, cr
   const [play, setPlay] = useState(false);
 
   return (
-    <View className="flex flex-col items-center px-4 mb-14">
+    <View className="flex flex-col items-center px-4 mt-6 mb-2">
         <View className="flex flex-row gap-3 items-start">
             <View className="flex justify-center items-center flex-row flex-1">
                 <View className="flex justify-center flex-1 ml-1 gap-y-1">
@@ -46,7 +46,7 @@ const ImageCapsoool: React.FC<ImageData> = ({ filename, filepath, recipients, cr
         </TouchableOpacity>
 
         <View className=" w-full mt-4">
-            <Text className="text-xs text-gray-100 font-pregular"
+            <Text className="text-xs text-gray-100 ml-1 font-pregular"
                 numberOfLines={1}
             >
                 Created: {created_at.toString()}

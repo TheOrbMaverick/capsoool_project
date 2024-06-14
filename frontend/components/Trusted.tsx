@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Image } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { images } from '@/constants';
 

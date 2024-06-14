@@ -33,7 +33,7 @@ function TextsCapule() {
   const [texts] = allData || [[]];
 
   // State hooks
-  const [updatedText, setTexts] = useState();
+  const [updatedText, setUpdatedText] = useState();
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -52,7 +52,8 @@ function TextsCapule() {
 
   // Fetch data when the component mounts or user changes
   useEffect(() => {
-    fetchData(url, setTexts, setIsLoading);
+    fetchData(url, setUpdatedText, setIsLoading);
+    isLoading
   }, [texts]);
 
   /**
@@ -61,8 +62,10 @@ function TextsCapule() {
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
-      setRefreshing(false);
+      // Fetch data when the component mounts or user changes
+      fetchData(url, setUpdatedText);
     }, 2000);
+    setRefreshing(false);
   }, []);
 
   /**
@@ -105,8 +108,7 @@ function TextsCapule() {
         setIsModalVisible(false);
         
         setTimeout(() => {
-          fetchData(url, setTexts);
-          router.push('/home/texts');
+          fetchData(url, setUpdatedText);
         }, 1000);
         
       } else {
@@ -128,7 +130,7 @@ function TextsCapule() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }: { item: TextData }) => (
           <TextCapsoool data={item} onPressItem={() => openItem(item)} 
-            onLongPressItem={() => deleteItem(item, user, setTexts)}
+            onLongPressItem={() => deleteItem(item, user, setUpdatedText)}
           />
         )}
         ListEmptyComponent={() => (
