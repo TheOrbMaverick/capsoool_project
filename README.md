@@ -21,23 +21,24 @@ It gives one the opportunity to save videos, images, voice messages and the mess
 - Python backend
 - Flask framework
 - bcrpyt
-- SQLAlchemy for DB models
-- SQLLITE3 DB to be changed to MySQL or PostGress on production
+- SQLAlchemy and ORM
+- SQLITE3 DB to be changed to MySQL or PostGress on production
 
 
 # FRONTEND:
 
-- Typescript frontend
+- Typescript
 - React Native with Expo
 - Expo router
 - Nativewind CSS
 - Node package manager
 
 
-
 ## HOW TO RUN THE APP
-First you need to run the backend from the root folder:
-in capsoool_project directory run the command "python3 app.py"
+First you need to open 2 terminals for the project.
+
+Then run the backend from the root folder:
+in capsoool_project directory run the "app.py" file
 
 On windows:
 ```bash
@@ -49,12 +50,12 @@ On Mac:
 python3 app.py
 ```
 
-after running that open a different terminal and cd to the frontend folder
-in the frontend folder run:
+After running that move to the new terminal and cd to the "frontend" folder
 
 ```bash
 cd frontend
 ```
+in the frontend folder run:
 
 ```bash
 npx expo start
@@ -66,8 +67,10 @@ npx expo start -c
 ```
 
 
-Once the frontend is up and runing you can either run the program in ios app using the command: 'i'
+Once the frontend is up and runing you can:
 
+run the app in ios using the command: 'i'
+on android with 'a'
 or you can run it on web using "w".
 
 from there you can navigate through the app:
@@ -76,7 +79,6 @@ from there you can navigate through the app:
 - hit the create button to create a capsoool. all fileds must contain something. write a message you would like to live behid for your family.
 - after that you can press and hold down (holding down does not work on web) to delete the entry.
 - or you can click it once to edit the entry.
-
 
 
 ## A default login and password you can use if you do not want to sign up is:
