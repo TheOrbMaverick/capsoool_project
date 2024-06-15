@@ -82,8 +82,8 @@ from there you can navigate through the app:
 
 
 ## A default login and password you can use if you do not want to sign up is:
-email: ```ita@example.com ```
-password: ```123456 ```
+email: ```ita@example.com```
+password: ```123456```
 
 The database is sqlite and is also contained in the project folder so that you can see changes that are going on as you made them.
 The passwords are hashed and not stored directly in string. But functionality for stronger passwords have not yet been added.
