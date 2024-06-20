@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { router } from "expo-router";
 import { ResizeMode, Video } from "expo-av";
 import * as DocumentPicker from "expo-document-picker";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,11 +10,11 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-
 import { icons } from "@/constants";
 import CustomButton from "@/components/CustomButton";
 import FormField from "@/components/FormField";
 import { UserContext } from "@/components/contexts/UserContext";
+import { router } from "expo-router";
 // import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Create = () => {
@@ -32,21 +31,29 @@ const Create = () => {
     video: null
   });
 
-  const openPicker = async () => {
-    const result = await DocumentPicker.getDocumentAsync({
-      type: ['image/*', 'video/*'],
-    });
-
-    // if (result.type === 'success') {
-    //   const { uri, mimeType } = result;
-    //   setMediaUri(uri);
-    //   if (mimeType.startsWith('image/')) {
-    //     setMediaType('image');
-    //   } else if (mimeType.startsWith('video/')) {
-    //     setMediaType('video');
-    //   }
-    // }
+  const openPicker = () => {
+    router.push('create/camera')
   }
+
+  // const openPicker = async () => {
+  //   const result = await DocumentPicker.getDocumentAsync({
+  //     type: ['image/*', 'video/*'],
+  //   });
+
+  //   if (!result.canceled) {
+
+  //   }
+
+  //   // if (result.type === 'success') {
+  //   //   const { uri, mimeType } = result;
+  //   //   setMediaUri(uri);
+  //   //   if (mimeType.startsWith('image/')) {
+  //   //     setMediaType('image');
+  //   //   } else if (mimeType.startsWith('video/')) {
+  //   //     setMediaType('video');
+  //   //   }
+  //   // }
+  // }
 
   // const openPicker = async (selectType) => {
   //   const result = await DocumentPicker.getDocumentAsync({
