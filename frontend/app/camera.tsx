@@ -13,6 +13,19 @@ export default function App() {
   const [isRecording, setIsRecording] = useState(false);
   const cameraRef = useRef<Camera | null>(null);
   const [photoUri, setPhotoUri] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState('IMAGE');
+  const [image, setImage] = useState(null);
+
+
+  /**
+   * THINGS TO DO
+   * 
+   * I need to set up permissions for image picker
+   * I need to check the useEffect so that when permission is grated it doesn't still trigger the:
+   *    if (!cameraPermission.granted || !audioPermission.granted) {} block
+   * 
+   * I need to make sure the image that is picked or picture that is taken shows up in te view on the create file
+   */
 
   useEffect(() => {
     async function requestPermissions() {
@@ -23,7 +36,7 @@ export default function App() {
   }, []);
 
   if (!cameraPermission || !audioPermission) {
-    return <View />;
+    return (<View />);
   }
 
   if (!cameraPermission.granted || !audioPermission.granted) {
@@ -112,9 +125,17 @@ export default function App() {
               <MaterialIcons name="flip-camera-ios" size={36} color="white" />
             </TouchableOpacity>
           </View>
-          <View className='flex-row justify-center mb-4'>
-            <Text className='text-xl font-psemibold text-white pr-8'>VIDEO</Text>
-            <Text className='text-xl font-psemibold text-white pl-8'>IMAGE</Text>
+          <View className="flex-row justify-center mb-4">
+            <TouchableOpacity onPress={() => setActiveTab('VIDEO')}>
+              <Text className={`text-xl font-semibold ${activeTab === 'VIDEO' ? 'text-secondary border-b-2 border-secondary' : 'text-white'} pr-8`}>
+                VIDEO
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setActiveTab('IMAGE')}>
+              <Text className={`text-xl font-semibold ${activeTab === 'IMAGE' ? 'text-secondary border-b-2 border-secondary' : 'text-white'} pl-8`}>
+                IMAGE
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Camera>

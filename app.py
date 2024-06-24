@@ -317,6 +317,7 @@ def all_user_data(user_id):
             'first_name': trust.first_name,
             'last_name': trust.last_name,
             'email': trust.email,
+            'phone_number':trust.phone_number,
             'created_at': trust.created_at,
             'updated_at': trust.updated_at,
             'author_id': trust.author_id
@@ -330,6 +331,7 @@ def all_user_data(user_id):
             'first_name': recipient.first_name,
             'last_name': recipient.last_name,
             'email': recipient.email,
+            'phone_number':recipient.phone_number,
             'created_at': recipient.created_at,
             'updated_at': recipient.updated_at,
             'author_id': recipient.author_id

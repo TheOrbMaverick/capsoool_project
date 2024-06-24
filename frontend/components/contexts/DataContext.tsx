@@ -28,21 +28,23 @@ export interface ImageData {
   created_at: string;
 }
 
-interface Trusted {
+export interface Trusted {
   id: number;
   first_name: string;
   last_name: string;
   email: string;
+  phone_number: string;
   created_at: string;
   updated_at: string;
   author_id: number;
 }
 
-interface Recipient {
+export interface Recipient {
   id: number;
   first_name: string;
   last_name: string;
   email: string;
+  phone_number: string;
   created_at: string;
   updated_at: string;
   author_id: number;

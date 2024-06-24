@@ -56,7 +56,7 @@ export default function HomeScreen() {
 
           <CustomButton
             title='Continue with Email'
-            handlePress={() => router.push('/camera')}
+            handlePress={() => router.push('/login')}
             containerStyles={containerStyles}
           />
         </View>
