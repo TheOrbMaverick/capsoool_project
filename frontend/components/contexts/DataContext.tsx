@@ -34,6 +34,7 @@ export interface Trusted {
   last_name: string;
   email: string;
   phone_number: string;
+  tp_image: string;
   created_at: string;
   updated_at: string;
   author_id: number;
@@ -45,6 +46,7 @@ export interface Recipient {
   last_name: string;
   email: string;
   phone_number: string;
+  tp_image: string;
   created_at: string;
   updated_at: string;
   author_id: number;

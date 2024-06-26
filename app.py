@@ -318,6 +318,7 @@ def all_user_data(user_id):
             'last_name': trust.last_name,
             'email': trust.email,
             'phone_number':trust.phone_number,
+            'tp_image': trust.tp_image,
             'created_at': trust.created_at,
             'updated_at': trust.updated_at,
             'author_id': trust.author_id

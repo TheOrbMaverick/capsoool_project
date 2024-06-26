@@ -15,7 +15,7 @@ interface FormFieldProps {
 const FormField: React.FC<FormFieldProps> = ({ title, value, placeholder, handleChangeText, otherStyles, ...props }) => {
     const [showPassword, setShowPassword] = useState(false);
 
-    const isMessageField = title === 'your message:';
+    const isMessageField = title === 'Your message:';
     const isPasswordField = title === 'Password' || title === 'Confirm Password';
     const fieldHeight = isMessageField ? 'h-48' : 'h-16';
     const multiline = isMessageField;

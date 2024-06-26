@@ -28,7 +28,7 @@ const Profile = () => {
           </Text>
 
           <View className="w-full pb-3 pt-3 border-b-2 border-t-2 border-black-200">
-            <TouchableOpacity onPress={() => router.push('/profile/trusted_people')}>
+            <TouchableOpacity onPress={() => router.push('/profile/contacts')}>
               <Text className="text-gray-100 text-lg font-regular font-psemibold ml-4">
                 Trusted People
               </Text>

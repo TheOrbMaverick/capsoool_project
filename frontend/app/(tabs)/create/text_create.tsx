@@ -4,8 +4,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
-import { buttonStyle, containerStyle, signupText } from '@/constants/mystyles';
+import { buttonStyle, containerStyle } from '@/constants/mystyles';
 import { UserContext } from '@/components/contexts/UserContext';
+import Recipients from '@/components/Recipients';
+import { DataContext } from '@/components/contexts/DataContext';
 
 export default function TextCreate() {
 
@@ -16,6 +18,9 @@ export default function TextCreate() {
   });
 
   const { user } = useContext(UserContext);
+
+  const { allData } = useContext(DataContext);
+  const [texts, trusted, video, image, recipient] = allData || [[], [], [], [], []];
 
   const createText = async () => {
 
@@ -62,32 +67,28 @@ export default function TextCreate() {
   };
 
   return (
-    <SafeAreaView className='bg-primary h-full' edges={['right', 'left', 'bottom']}>
-      <ScrollView>
-        <View className={containerStyle}>
+    <SafeAreaView className="bg-primary h-full" edges={['right', 'left']}>
+      <ScrollView className="px-4 my-6">
+        <View className='w-full justify-center h-full'>
           <Text
             className='text-2xl text-white
-            text-semibold mt-4 font-psemibold'
+            text-semibold font-psemibold'
           >
-            Enter your time capsule message
+            Text capsoool
           </Text>
 
           <FormField
-            title='title'
+            title='Title'
             value={form.title}
             handleChangeText={(e) => setForm({ ...form, title: e })}
             otherStyles='mt-8'
           />
 
-          <FormField
-            title='recipients'
-            value={form.recipients}
-            handleChangeText={(e) => setForm({ ...form, recipients: e })}
-            otherStyles='mt-8'
-          />
+          <Text className='mt-10 text-base text-gray-100 font-pmedium'>Recipients:</Text>
+          <Recipients recipient={recipient}/>
 
           <FormField
-            title='your message:'
+            title='Your message:'
             value={form.content}
             handleChangeText={(e) => setForm({ ...form, content: e })}
             otherStyles='mt-8 mb-8'

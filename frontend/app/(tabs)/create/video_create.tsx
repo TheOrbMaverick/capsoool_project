@@ -15,6 +15,8 @@ import CustomButton from "@/components/CustomButton";
 import FormField from "@/components/FormField";
 import { UserContext } from "@/components/contexts/UserContext";
 import { router } from "expo-router";
+import Recipients from "@/components/Recipients";
+import { DataContext } from "@/components/contexts/DataContext";
 // import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Create = () => {
@@ -22,6 +24,9 @@ const Create = () => {
   const [uploading, setUploading] = useState(false);
   const [mediaUri, setMediaUri] = useState<string | null>(null);
   const [mediaType, setMediaType] = useState<'image' | 'video' | null>(null);
+
+  const { allData } = useContext(DataContext);
+  const [texts, trusted, video, image, recipient] = allData || [[], [], [], [], []];
 
   const [form, setForm] = useState({
     id: 0,
@@ -32,7 +37,22 @@ const Create = () => {
   });
 
   const openPicker = () => {
-    router.push('create/camera')
+    Alert.alert(
+      'Add Video or Image',
+      'Pick from your gallery or record using your camera',
+      [
+          {
+              text: 'Select Media',
+              onPress: () => console.log('Open image'),
+              style: 'default'
+          },
+          {
+              text: 'Camera',
+              onPress: () => router.push('/camera'),
+              style: 'default'
+          }
+      ]
+    );
   }
 
   // const openPicker = async () => {
@@ -130,6 +150,9 @@ const Create = () => {
           otherStyles="mt-10"
         />
 
+        <Text className='mt-10 text-base text-gray-100 font-pmedium'>Recipients:</Text>
+        <Recipients recipient={recipient}/>
+
         <View className="mt-7 space-y-2">
           <Text className="text-base text-gray-100 font-pmedium">
             Upload Video or Image
@@ -158,42 +181,6 @@ const Create = () => {
             )}
           </TouchableOpacity>
         </View>
-
-        <View className="mt-7 space-y-2">
-          <Text className="text-base text-gray-100 font-pmedium">
-            Thumbnail Image
-          </Text>
-
-          <TouchableOpacity onPress={() => console.log('Video')}>
-            {form.thumbnail ? (
-              <Image
-                source={{ uri: 'form.thumbnail.uri' }}
-                resizeMode="cover"
-                className="w-full h-64 rounded-2xl"
-              />
-            ) : (
-              <View className="w-full h-16 px-4 bg-black-100 rounded-2xl border-2 border-black-200 flex justify-center items-center flex-row space-x-2">
-                <Image
-                  source={icons.upload}
-                  resizeMode="contain"
-                  alt="upload"
-                  className="w-5 h-5"
-                />
-                <Text className="text-sm text-gray-100 font-pmedium">
-                  Choose a file
-                </Text>
-              </View>
-            )}
-          </TouchableOpacity>
-        </View>
-
-        <FormField
-          title="Recipients"
-          value={form.recipient}
-          placeholder="The AI prompt of your video...."
-          handleChangeText={(e) => setForm({ ...form, recipient: e })}
-          otherStyles="mt-7"
-        />
 
         <CustomButton
           title="Submit & Publish"
