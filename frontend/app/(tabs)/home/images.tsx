@@ -37,7 +37,7 @@ const Images = () => {
             filename={item.filename}
             filepath={item.filepath}
             recipients={item.recipients}
-            created_at={item.created_at}
+            createdAt={item.createdAt}
           />
         )}
         ListEmptyComponent={() => (

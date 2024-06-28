@@ -50,7 +50,7 @@ export default function TextCreate() {
           title: form.title,
           recipients: form.recipients,
           content: form.content,
-          author_id: user?.id
+          authorId: user?.id
         })
       });
 

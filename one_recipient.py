@@ -14,10 +14,10 @@ if __name__ == "__main__":
     # Creating users
     new_user_1 = Recipient(
         email='grace@example.com',
-        first_name='Elizabeth',
-        last_name='Nora',
-        phone_number='425667890',
-        author_id=1
+        firstName='Elizabeth',
+        lastName='Nora',
+        phoneNumber='425667890',
+        authorId=1
     )
 
     # Add users to the session and commit

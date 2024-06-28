@@ -16,8 +16,8 @@ const TextCapsoool: React.FC<TextComponentProps> = ({ data, onPressItem, onLongP
                 <Text className='text-2xl font-psemibold text-white'>{data.title}</Text>
                 <Text className='text-gray-100 text-sm font-regular mb-3'>Recipients: {data.recipients}</Text>
                 <Text className='text-white text-lg font-regular mb-3 text-justify'>{data.content}</Text>
-                <Text className='text-gray-100 text-sm font-regular mb-3'>Created At: {data.created_at.toString()}</Text>
-                <Text className='text-gray-100 text-sm font-regular mb-3'>Last Updated: {data.updated_at.toString()}</Text>
+                <Text className='text-gray-100 text-sm font-regular mb-3'>Created At: {data.createdAt.toString()}</Text>
+                <Text className='text-gray-100 text-sm font-regular mb-3'>Last Updated: {data.updatedAt.toString()}</Text>
             </View>
         </TouchableOpacity>
     );

@@ -11,9 +11,9 @@ const trusted_people = () => {
 
   // Form state
   const [form, setForm] = useState({
-    id: 0,
-    first_name: '',
-    last_name: '',
+    id: '',
+    firstName: '',
+    lastName: '',
     email: ''
   });
 
@@ -23,9 +23,9 @@ const trusted_people = () => {
  */
   const openItem = (item: Trusted) => {
     setForm({
-      id: item.id,
-      first_name: item.first_name,
-      last_name: item.last_name,
+      id: item.id.toString(),
+      firstName: item.firstName,
+      lastName: item.lastName,
       email: item.email
     });
     setIsModalVisible(true);

@@ -4,13 +4,13 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { images } from '@/constants';
 
 export interface TrustedPerson {
-    id: number;
+    id: string;
     email?: string;
-    first_name?: string;
-    last_name?: string;
-    phone_number?: string;
+    firstName?: string;
+    lastName?: string;
+    phoneNumber?: string;
     tp_image?: string;
-    author_id?: number;
+    authorId?: number;
 }
 
 interface TrustedProps {
@@ -22,9 +22,9 @@ interface TrustedItemProps {
 }
 
 const defaultTrustedPersons: TrustedPerson[] = [
-    { id: 4, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() }, 
-    { id: 5, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() },
-    { id: 6, first_name: 'add trusted person', last_name: '', tp_image: images.add_user.toString() }
+    { id: '4', firstName: 'add trusted person', lastName: '', tp_image: images.add_user.toString() }, 
+    { id: '5', firstName: 'add trusted person', lastName: '', tp_image: images.add_user.toString() },
+    { id: '6', firstName: 'add trusted person', lastName: '', tp_image: images.add_user.toString() }
 ];
 
 const TrustedItem: React.FC<TrustedItemProps> = ({ item }) => {
@@ -35,12 +35,12 @@ const TrustedItem: React.FC<TrustedItemProps> = ({ item }) => {
                 <View className='rounded p-5 items-center mb-5'>
                     <View className="w-[46px] h-[46px] mb-2 rounded-lg border border-secondary flex justify-center p-0.5">
                         <Image
-                        source={item.first_name === 'add trusted person' ? images.add_user : { uri: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' } }
+                        source={item.firstName === 'add trusted person' ? images.add_user : { uri: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' } }
                         className="w-full h-full rounded-lg"
                         resizeMode="cover"
                         />
                     </View>
-                    <Text className='text-white font-pextralight'>{item.first_name} {item.last_name}</Text>
+                    <Text className='text-white font-pextralight'>{item.firstName} {item.lastName}</Text>
                 </View>
             </TouchableOpacity>
         </View>

@@ -42,7 +42,7 @@ function TextsCapule() {
 
   // Form state
   const [form, setForm] = useState({
-    id: 0,
+    id: '',
     title: '',
     recipients: '',
     content: '',
@@ -98,7 +98,7 @@ function TextsCapule() {
           title: form.title,
           recipients: form.recipients,
           content: form.content,
-          author_id: user?.id,
+          authorId: user?.id,
         }),
       });
   

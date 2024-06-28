@@ -14,26 +14,26 @@ if __name__ == "__main__":
     # Creating users
     new_user_1 = Recipient(
         email='selema@example.com',
-        first_name='Selema',
-        last_name='Enang',
-        phone_number='425667890',
-        author_id=1
+        firstName='Selema',
+        lastName='Enang',
+        phoneNumber='425667890',
+        authorId=1
     )
 
     new_user_2 = Recipient(
         email='elam@example.com',
-        first_name='Elam',
-        last_name='Murphy',
-        phone_number='1234567890',
-        author_id=1
+        firstName='Elam',
+        lastName='Murphy',
+        phoneNumber='1234567890',
+        authorId=1
     )
 
     new_user_3 = Recipient(
         email='thelma@example.com',
-        first_name='Thelma',
-        last_name='Enang',
-        phone_number='1234567890',
-        author_id=1
+        firstName='Thelma',
+        lastName='Enang',
+        phoneNumber='1234567890',
+        authorId=1
     )
 
     # Add users to the session and commit

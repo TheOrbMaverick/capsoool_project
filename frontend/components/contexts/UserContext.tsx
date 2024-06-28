@@ -2,15 +2,15 @@ import React, { Dispatch, PropsWithChildren, SetStateAction, createContext, useC
 
 export interface User {
   confirmed_email: number;
-  created_at: string;
+  createdAt: string;
   email: string;
-  first_name: string;
+  firstName: string;
   id: number;
-  last_login: string;
-  last_name: string;
-  phone_number: string;
+  lastLogin: string;
+  lastName: string;
+  phoneNumber: string;
   tier: number;
-  updated_at: string;
+  updatedAt: string;
 }
 
 type ContextState = {

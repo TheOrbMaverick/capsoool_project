@@ -1,22 +1,26 @@
-from .base import BaseModel, Base
-from sqlalchemy import Column, String, Integer, ForeignKey
+from models import Base
+from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
-class Image(BaseModel):
+class Image(Base):
     """Model for storing image metadata."""
-    __tablename__ = "images"  # Specify the table name
+    __tablename__ = "images" 
+
+    id = Column(Integer, primary_key=True)
 
     filename = Column(String, nullable=False)
     """Name of the image file"""
     
     filepath = Column(String, nullable=False)
     """Path where the image file is stored"""
-
-    recipients = Column(String)
     
     size = Column(Integer)
     """Size of the image file in bytes"""
 
-    author_id = Column(ForeignKey('users.id'))
+    authorId = Column(ForeignKey('users.id'))
     """ID of the user who uploaded the image"""
+
+    createdAt = Column(DateTime, default=datetime.now)
+
+    author = relationship("User", back_populates="images")

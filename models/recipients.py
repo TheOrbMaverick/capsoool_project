@@ -1,26 +1,34 @@
-from .base import BaseModel
+from .base import BaseModel, Base
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
-class Recipient(BaseModel):
+class Recipient(Base):
     """Model for storing recipient information."""
-    __tablename__ = "recipients"  # Specify the table name
+    __tablename__ = "recipients"
+
+    id = Column(Integer, primary_key=True)
 
     email = Column(String, nullable=False, unique=True)
     """Recipient's email address"""
     
-    first_name = Column(String, nullable=False)
+    firstName = Column(String, nullable=False)
     """Recipient's first name"""
     
-    last_name = Column(String, nullable=False)
+    lastName = Column(String, nullable=False)
     """Recipient's last name"""
     
-    phone_number = Column(String, nullable=False)
+    phoneNumber = Column(String, nullable=False)
     """Recipient's phone number"""
     
-    updated_at = Column(DateTime, default=datetime.now)
+    updatedAt = Column(DateTime, default=datetime.now)
     """Timestamp for when the record was last updated"""
 
-    author_id = Column(ForeignKey('users.id'))
+    authorId = Column(ForeignKey('users.id'))
     """ID of the user who added the recipient"""
+
+    createdAt = Column(DateTime, default=datetime.now)
+
+    author = relationship("User", back_populates="recipients")
+    
+    contents = relationship("ContentRecipients", back_populates="recipient")

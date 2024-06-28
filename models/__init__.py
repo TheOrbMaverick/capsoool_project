@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine
-from models.base import Base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 # Create an engine to connect to the SQLite database
 engine = create_engine('sqlite:///./capsoool.db', echo=False)

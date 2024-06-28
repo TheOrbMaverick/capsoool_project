@@ -26,7 +26,7 @@ const Videos = () => {
 
   // Form state
   const [form, setForm] = useState({
-    id: 0,
+    id: '',
     title: '',
     recipient: '',
     thumbnail: '',
@@ -71,7 +71,7 @@ const Videos = () => {
             recipients={item.recipients}
             thumbnail={item.thumbnail}
             video={item.video}
-            created_at={item.created_at}
+            createdAt={item.createdAt}
           />
         )}
         ListHeaderComponent={() => (

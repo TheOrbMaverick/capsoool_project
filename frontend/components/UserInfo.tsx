@@ -19,7 +19,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ user, trustedPersons }) => {
             Welcome
           </Text>
           <Text className='text-2xl font-psemibold text-white'>
-            {user?.first_name} {user?.last_name}
+            {user?.firstName} {user?.lastName}
           </Text>
           {/* <Text className='text-gray-100 text-lg font-regular mb-3'>
             {user?.email}

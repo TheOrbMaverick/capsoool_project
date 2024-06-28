@@ -17,9 +17,9 @@ if __name__ == "__main__":
             title= "Meeting Reminder",
             content= "Don't forget about the team meeting tomorrow at 10 AM.",
             recipients= "team@example.com",
-            created_at= datetime.now(),
-            updated_at= datetime.now(),
-            author_id= 2
+            createdAt= datetime.now(),
+            updatedAt= datetime.now(),
+            authorId= 2
         )
 
     new_text_2 = Text(
@@ -27,9 +27,9 @@ if __name__ == "__main__":
             title= "Project Update",
             content= "The latest update on the project has been posted on the project board.",
             recipients= "project-team@example.com",
-            created_at= datetime.now(),
-            updated_at= datetime.now(),
-            author_id= 1
+            createdAt= datetime.now(),
+            updatedAt= datetime.now(),
+            authorId= 1
         )
 
     new_text_3 = Text(
@@ -37,9 +37,9 @@ if __name__ == "__main__":
             title= "Holiday Notice",
             content= "The office will be closed next Monday for the public holiday.",
             recipients= "all@example.com",
-            created_at= datetime.now(),
-            updated_at= datetime.now(),
-            author_id= 1
+            createdAt= datetime.now(),
+            updatedAt= datetime.now(),
+            authorId= 1
         )
     
     # Add users to the session and commit

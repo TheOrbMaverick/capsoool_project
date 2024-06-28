@@ -11,6 +11,7 @@ from sqlalchemy.exc import NoResultFound
 from datetime import datetime
 from models import create_table, session
 
+
 app = Flask(__name__, subdomain_matching=True)
 app.register_blueprint(app_routes)
 CORS(app)
@@ -44,21 +45,21 @@ def signup():
     if not data:
         return jsonify({"message": "No input data provided"}), 400
 
-    first_name = data.get('firstName')
-    last_name = data.get('lastName')
+    firstName = data.get('firstName')
+    lastName = data.get('lastName')
     email = data.get('email')
     password = data.get('password')
-    phone_number = data.get('phoneNumber')
+    phoneNumber = data.get('phoneNumber')
 
-    if not first_name or not last_name or not email or not password:
+    if not firstName or not lastName or not email or not password:
         return jsonify({"message": "Missing fields"}), 400
 
     new_user = User(
-        first_name=first_name,
-        last_name=last_name,
+        firstName=firstName,
+        lastName=lastName,
         email=email,
         password=password,
-        phone_number=phone_number
+        phoneNumber=phoneNumber
     )
 
     try:
@@ -90,18 +91,18 @@ def login():
 
     user = session.query(User).filter_by(email=email).first()
     if user and user.verify_password(password):
-        user.last_login = datetime.now()
+        user.lastLogin = datetime.now()
         session.commit()
         user_data = {
             'id': user.id,
             'email': user.email,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'phone_number': user.phone_number,
-            'last_login': user.last_login,
+            'firstName': user.firstName,
+            'lastName': user.lastName,
+            'phoneNumber': user.phoneNumber,
+            'lastLogin': user.lastLogin,
             'confirmed_email': user.confirmed_email,
-            'created_at': user.created_at,
-            'updated_at': user.updated_at,
+            'createdAt': user.createdAt,
+            'updatedAt': user.updatedAt,
             'tier': user.tier,
         }
         return jsonify({'user': user_data}), 200
@@ -119,16 +120,16 @@ def get_user_texts(user_id):
     Returns:
         response (json): List of texts or error message
     """
-    texts = session.query(Text).filter_by(author_id=user_id).all()
+    texts = session.query(Text).filter_by(authorId=user_id).all()
     text_list = [
         {
             'id': text.id,
             'title': text.title,
             'content': text.content,
             'recipients': text.recipients,
-            'created_at': text.created_at,
-            'updated_at': text.updated_at,
-            'author_id': text.author_id
+            'createdAt': text.createdAt,
+            'updatedAt': text.updatedAt,
+            'authorId': text.authorId
         }
         for text in texts
     ]
@@ -145,16 +146,16 @@ def get_trusted(user_id):
     Returns:
         response (json): List of trusted people or error message
     """
-    trusted = session.query(Trusted).filter_by(author_id=user_id).all()
+    trusted = session.query(Trusted).filter_by(authorId=user_id).all()
     trust_list = [
         {
             'id': trust.id,
-            'first_name': trust.first_name,
-            'last_name': trust.last_name,
+            'firstName': trust.firstName,
+            'lastName': trust.lastName,
             'email': trust.email,
-            'created_at': trust.created_at,
-            'updated_at': trust.updated_at,
-            'author_id': trust.author_id
+            'createdAt': trust.createdAt,
+            'updatedAt': trust.updatedAt,
+            'authorId': trust.authorId
         }
         for trust in trusted
     ]
@@ -183,7 +184,7 @@ def create_text(user_id):
     title = data.get('title')
     recipients = data.get('recipients')
     content = data.get('content')
-    author_id = user_id
+    authorId = user_id
 
     if not title or not recipients or not content:
         return jsonify({"message": "Missing fields"}), 400
@@ -192,7 +193,7 @@ def create_text(user_id):
         title=title,
         recipients=recipients,
         content=content,
-        author_id=author_id
+        authorId=authorId
     )
     try:
         session.add(new_text)
@@ -220,14 +221,14 @@ def edit_text(user_id, text_id):
         response (json): Success message or error message
     """
     data = request.get_json()
-    text_item = session.query(Text).filter_by(author_id=user_id, id=text_id).first()
+    text_item = session.query(Text).filter_by(authorId=user_id, id=text_id).first()
     if text_item is None:
         return jsonify({'message': 'Text item not found'}), 404
 
     text_item.title = data.get('title', text_item.title)
     text_item.recipients = data.get('recipients', text_item.recipients)
     text_item.content = data.get('content', text_item.content)
-    text_item.updated_at = datetime.now()
+    text_item.updatedAt = datetime.now()
     
     session.add(text_item)
     session.commit()
@@ -246,7 +247,7 @@ def delete_text(user_id, text_id):
     Returns:
         response (json): Success message or error message
     """
-    text_item = session.query(Text).filter_by(author_id=user_id, id=text_id).first()
+    text_item = session.query(Text).filter_by(authorId=user_id, id=text_id).first()
     if text_item is None:
         return jsonify({'message': 'Text item not found'}), 404
 
@@ -266,11 +267,11 @@ def all_user_data(user_id):
     Returns:
         response (json): Lists of texts, videos, images, and trusted people
     """
-    texts = session.query(Text).filter_by(author_id=user_id).all()
-    videos = session.query(Video).filter_by(author_id=user_id).all()
-    images = session.query(Image).filter_by(author_id=user_id).all()
-    trusted = session.query(Trusted).filter_by(author_id=user_id).all()
-    recipients = session.query(Recipient).filter_by(author_id=user_id).all()
+    texts = session.query(Text).filter_by(authorId=user_id).all()
+    videos = session.query(Video).filter_by(authorId=user_id).all()
+    images = session.query(Image).filter_by(authorId=user_id).all()
+    trusted = session.query(Trusted).filter_by(authorId=user_id).all()
+    recipients = session.query(Recipient).filter_by(authorId=user_id).all()
 
     text_list = [
         {
@@ -278,9 +279,9 @@ def all_user_data(user_id):
             'title': text.title,
             'content': text.content,
             'recipients': text.recipients,
-            'created_at': text.created_at,
-            'updated_at': text.updated_at,
-            'author_id': text.author_id
+            'createdAt': text.createdAt,
+            'updatedAt': text.updatedAt,
+            'authorId': text.authorId
         }
         for text in texts
     ]
@@ -293,8 +294,8 @@ def all_user_data(user_id):
             'recipients': video.recipients,
             'size': video.size,
             'thumbnail': video.thumbnail,
-            'created_at': video.created_at,
-            'author_id': video.author_id
+            'createdAt': video.createdAt,
+            'authorId': video.authorId
         }
         for video in videos
     ]
@@ -305,8 +306,8 @@ def all_user_data(user_id):
             'filename': image.filename,
             'filepath': image.filepath,
             'recipients': image.recipients,
-            'created_at': image.created_at,
-            'author_id': image.author_id
+            'createdAt': image.createdAt,
+            'authorId': image.authorId
         }
         for image in images
     ]
@@ -314,14 +315,14 @@ def all_user_data(user_id):
     trust_list = [
         {
             'id': trust.id,
-            'first_name': trust.first_name,
-            'last_name': trust.last_name,
+            'firstName': trust.firstName,
+            'lastName': trust.lastName,
             'email': trust.email,
-            'phone_number':trust.phone_number,
+            'phoneNumber':trust.phoneNumber,
             'tp_image': trust.tp_image,
-            'created_at': trust.created_at,
-            'updated_at': trust.updated_at,
-            'author_id': trust.author_id
+            'createdAt': trust.createdAt,
+            'updatedAt': trust.updatedAt,
+            'authorId': trust.authorId
         }
         for trust in trusted
     ]
@@ -329,13 +330,13 @@ def all_user_data(user_id):
     recipient_list = [
         {
             'id': recipient.id,
-            'first_name': recipient.first_name,
-            'last_name': recipient.last_name,
+            'firstName': recipient.firstName,
+            'lastName': recipient.lastName,
             'email': recipient.email,
-            'phone_number':recipient.phone_number,
-            'created_at': recipient.created_at,
-            'updated_at': recipient.updated_at,
-            'author_id': recipient.author_id
+            'phoneNumber':recipient.phoneNumber,
+            'createdAt': recipient.createdAt,
+            'updatedAt': recipient.updatedAt,
+            'authorId': recipient.authorId
         }
         for recipient in recipients
     ]
@@ -360,19 +361,19 @@ def newContact():
     if not data:
         return jsonify({"message": "No input data provided"}), 400
 
-    first_name = data.get('firstName')
-    last_name = data.get('lastName')
+    firstName = data.get('firstName')
+    lastName = data.get('lastName')
     email = data.get('email')
-    phone_number = data.get('phoneNumber')
+    phoneNumber = data.get('phoneNumber')
 
-    if not first_name or not last_name or not email:
+    if not firstName or not lastName or not email:
         return jsonify({"message": "Missing fields"}), 400
 
     new_contact = Recipient(
-        first_name=first_name,
-        last_name=last_name,
+        firstName=firstName,
+        lastName=lastName,
         email=email,
-        phone_number=phone_number
+        phoneNumber=phoneNumber
     )
 
     try:

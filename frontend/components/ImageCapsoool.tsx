@@ -5,7 +5,7 @@ import { ImageData } from "./contexts/DataContext";
 import { icons } from "../constants";
 
   
-const ImageCapsoool: React.FC<ImageData> = ({ filename, filepath, recipients, created_at }) => {
+const ImageCapsoool: React.FC<ImageData> = ({ filename, filepath, recipients, createdAt }) => {
   const [play, setPlay] = useState(false);
 
   return (
@@ -49,7 +49,7 @@ const ImageCapsoool: React.FC<ImageData> = ({ filename, filepath, recipients, cr
             <Text className="text-xs text-gray-100 ml-1 font-pregular"
                 numberOfLines={1}
             >
-                Created: {created_at.toString()}
+                Created: {createdAt.toString()}
             </Text>
         </View>
     </View>

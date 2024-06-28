@@ -14,13 +14,13 @@ def users():
     try:
         users = session.query(User).all()
         user_data = [{'id': user.id, 'email': user.email,
-                      'first_name': user.first_name,
-                      'last_name': user.last_name,
-                      'phone_number': user.phone_number,
-                      'last_login': user.last_login,
+                      'firstName': user.firstName,
+                      'lastName': user.lastName,
+                      'phoneNumber': user.phoneNumber,
+                      'lastLogin': user.lastLogin,
                       'confirmed_email': user.confirmed_email,
-                      'created_at': user.created_at,
-                      'updated_at': user.updated_at
+                      'createdAt': user.createdAt,
+                      'updatedAt': user.updatedAt
                      } for user in users]
     except Exception as e:
         print("Error:", e)
@@ -45,13 +45,13 @@ def get_user(user_id):
             single_user = {
                 'id': user.id,
                 'email': user.email,
-                'first_name': user.first_name,
-                'last_name': user.last_name,
-                'phone_number': user.phone_number,
-                'last_login': user.last_login,
+                'firstName': user.firstName,
+                'lastName': user.lastName,
+                'phoneNumber': user.phoneNumber,
+                'lastLogin': user.lastLogin,
                 'confirmed_email': user.confirmed_email,
-                'created_at': user.created_at,
-                'updated_at': user.updated_at
+                'createdAt': user.createdAt,
+                'updatedAt': user.updatedAt
             }
             return jsonify(user=single_user), 200
         else:
@@ -68,9 +68,9 @@ def create_user():
     Request Body:
         id (int): User ID
         email (str): User email
-        first_name (str): User first name
-        last_name (str): User last name
-        phone_number (str): User phone number
+        firstName (str): User first name
+        lastName (str): User last name
+        phoneNumber (str): User phone number
     
     Returns:
         response (json): Success message or error message
@@ -80,9 +80,9 @@ def create_user():
         new_user = User(
             id=data.get('id'),
             email=data.get('email'),
-            first_name=data.get('first_name'),
-            last_name=data.get('last_name'),
-            phone_number=data.get('phone_number')
+            firstName=data.get('firstName'),
+            lastName=data.get('lastName'),
+            phoneNumber=data.get('phoneNumber')
         )
         session.add(new_user)
         session.commit()
@@ -102,9 +102,9 @@ def update_user(user_id):
     
     Request Body:
         email (str): User email
-        first_name (str): User first name
-        last_name (str): User last name
-        phone_number (str): User phone number
+        firstName (str): User first name
+        lastName (str): User last name
+        phoneNumber (str): User phone number
     
     Returns:
         response (json): Success message or error message
@@ -115,9 +115,9 @@ def update_user(user_id):
         if user:
             # Update the user data
             user.email = data.get('email', user.email)
-            user.first_name = data.get('first_name', user.first_name)
-            user.last_name = data.get('last_name', user.last_name)
-            user.phone_number = data.get('phone_number', user.phone_number)
+            user.firstName = data.get('firstName', user.firstName)
+            user.lastName = data.get('lastName', user.lastName)
+            user.phoneNumber = data.get('phoneNumber', user.phoneNumber)
 
             # Commit the changes
             session.commit()

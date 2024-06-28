@@ -2,54 +2,54 @@ import React, { createContext, useContext, useEffect, useState, Dispatch, SetSta
 import { UserContext } from '@/components/contexts/UserContext';
 
 export interface TextData {
-  id: number;
+  id: string;
   title: string;
   content: string;
   recipients: string;
-  created_at: string;
-  updated_at: string;
-  author_id: number;
+  createdAt: string;
+  updatedAt: string;
+  authorId: number;
 }
 
 export interface VideoData {
-  id: number,
+  id: string,
   title: string;
   recipients: string;
   thumbnail: string;
   video: string;
-  created_at: string;
+  createdAt: string;
 }
 
 export interface ImageData {
-  id: number;
+  id: string;
   filename: string;
   filepath: string;
   recipients: string;
-  created_at: string;
+  createdAt: string;
 }
 
 export interface Trusted {
-  id: number;
-  first_name: string;
-  last_name: string;
+  id: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone_number: string;
+  phoneNumber: string;
   tp_image: string;
-  created_at: string;
-  updated_at: string;
-  author_id: number;
+  createdAt: string;
+  updatedAt: string;
+  authorId: number;
 }
 
 export interface Recipient {
-  id: number;
-  first_name: string;
-  last_name: string;
+  id: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone_number: string;
+  phoneNumber: string;
   tp_image: string;
-  created_at: string;
-  updated_at: string;
-  author_id: number;
+  createdAt: string;
+  updatedAt: string;
+  authorId: number;
 }
 
 type Data = [TextData[], Trusted[], VideoData[], ImageData[], Recipient[]];

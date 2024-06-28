@@ -4,15 +4,15 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { images } from '@/constants';
 
 interface RecipientComponent {
-    id: number;
+    id: string;
     email?: string;
-    first_name?: string;
-    last_name?: string;
-    phone_number?: string;
+    firstName?: string;
+    lastName?: string;
+    phoneNumber?: string;
     tp_image?: string;
-    created_at?: string;
-    updated_at?: string;
-    author_id?: number;
+    createdAt?: string;
+    updatedAt?: string;
+    authorId?: number;
 }
 
 interface RecipientProps {
@@ -25,7 +25,7 @@ interface RecipientItemProps {
 }
 
 const defaultRecipient: RecipientComponent[] = [
-    { id: 4, first_name: 'add a recipient', last_name: '', tp_image: images.add_user.toString() }
+    { id: '4', firstName: 'add a recipient', lastName: '', tp_image: images.add_user.toString() }
 ];
 
 const RecipientItem: React.FC<RecipientItemProps> = ({ item, onlongPressItem }) => {
@@ -37,12 +37,12 @@ const RecipientItem: React.FC<RecipientItemProps> = ({ item, onlongPressItem }) 
                 <View className='rounded p-5 items-center'>
                     <View className="w-[46px] h-[46px] mb-2 rounded-lg border border-secondary flex justify-center p-0.5">
                         <Image
-                        source={item.first_name === 'add a recipient' ? images.add_user : { uri: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' } }
+                        source={item.firstName === 'add a recipient' ? images.add_user : { uri: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' } }
                         className="w-full h-full rounded-lg"
                         resizeMode="cover"
                         />
                     </View>
-                    <Text className='text-white font-pextralight'>{item.first_name} {item.last_name}</Text>
+                    <Text className='text-white font-pextralight'>{item.firstName} {item.lastName}</Text>
                 </View>
             </TouchableOpacity>
         </View>

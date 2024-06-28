@@ -17,7 +17,7 @@ if __name__ == "__main__":
         filepath= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         recipients= 'Radical Ebube',
         size= 204800,
-        author_id= 1
+        authorId= 1
     )
 
     new_image_2 = Image(
@@ -26,7 +26,7 @@ if __name__ == "__main__":
         filepath= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         recipients= 'Ekoh-Chukwukelu Chukwudubem, Liana Rida',
         size= 409600,
-        author_id= 1
+        authorId= 1
     )
 
     new_image_3 = Image(
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         filepath= 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         recipients= 'Manny Lou, Ellie Joel',
         size= 102400,
-        author_id= 1
+        authorId= 1
     )
     
     # Add users to the session and commit

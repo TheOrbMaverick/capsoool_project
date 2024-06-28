@@ -6,7 +6,7 @@ import { VideoData } from "./contexts/DataContext";
 import { icons } from "../constants";
 
   
-const VideoCapsoool: React.FC<VideoData> = ({ title, recipients, thumbnail, video, created_at }) => {
+const VideoCapsoool: React.FC<VideoData> = ({ title, recipients, thumbnail, video, createdAt }) => {
   const [play, setPlay] = useState(false);
 
   return (
@@ -69,7 +69,7 @@ const VideoCapsoool: React.FC<VideoData> = ({ title, recipients, thumbnail, vide
         <Text className="text-xs text-gray-100 font-pregular"
               numberOfLines={1}
         >
-            Created: {created_at.toString()}
+            Created: {createdAt.toString()}
         </Text>
       </View>
     </View>

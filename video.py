@@ -18,7 +18,7 @@ if __name__ == "__main__":
         recipients= 'Julia Stille, Brad Adolphus, Young E. Chomiachukwu',
         size= 204800,
         thumbnail='https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-        author_id= 1
+        authorId= '41fddc2105a445e18799dc9b9b4e6237'
     )
 
     new_video_2 = Video(
@@ -28,7 +28,7 @@ if __name__ == "__main__":
         recipients= 'Radical Ebube',
         size= 409600,
         thumbnail='https://www.gstatic.com/webp/gallery3/1.sm.png',
-        author_id= 1
+        authorId= '41fddc2105a445e18799dc9b9b4e6237'
     )
 
     new_video_3 = Video(
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         recipients= 'Chioma Anwo, Prestige Ebube',
         size= 102400,
         thumbnail='https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-        author_id= 1
+        authorId= '41fddc2105a445e18799dc9b9b4e6237'
     )
     
     # Add users to the session and commit

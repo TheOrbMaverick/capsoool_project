@@ -11,12 +11,12 @@ class User(BaseModel):
     Attributes:
         __tablename__ (str): Name of the table in the database.
         email (str): User's email address. Must be unique and not nullable.
-        first_name (str): User's first name. Not nullable.
-        last_name (str): User's last name. Not nullable.
-        phone_number (str): User's phone number.
-        last_login (datetime): Timestamp of the user's last login. Defaults to the current datetime.
+        firstName (str): User's first name. Not nullable.
+        lastName (str): User's last name. Not nullable.
+        phoneNumber (str): User's phone number.
+        lastLogin (datetime): Timestamp of the user's last login. Defaults to the current datetime.
         confirmed_email (int): Indicator if the user's email is confirmed (0 for false, 1 for true). Defaults to 0.
-        updated_at (datetime): Timestamp of the last update to the user's record. Defaults to the current datetime.
+        updatedAt (datetime): Timestamp of the last update to the user's record. Defaults to the current datetime.
         user_image (str): URL or path to the user's image.
         _password (str): Hashed password of the user. Not readable directly.
         tier (int): User's subscription tier. Defaults to 0.
@@ -30,23 +30,25 @@ class User(BaseModel):
     __tablename__ = "users"
 
     email = Column(String, nullable=False, unique=True)
-    first_name = Column(String, nullable=False)
-    last_name = Column(String, nullable=False) 
-    phone_number = Column(String)
-    last_login = Column(DateTime, default=datetime.now)
+    firstName = Column(String, nullable=False)
+    lastName = Column(String, nullable=False) 
+    phoneNumber = Column(String)
+    lastLogin = Column(DateTime, default=datetime.now)
     confirmed_email = Column(Integer, default=0)
-    updated_at = Column(DateTime, default=datetime.now)
+    updatedAt = Column(DateTime, default=datetime.now)
     user_image = Column(String)
 
     _password = Column("password", String, nullable=False)
     tier = Column(Integer, default=0)
 
     # Define the relationships
-    images = relationship("Image")
-    trusted_people = relationship("Trusted")
-    texts = relationship("Text")
-    videos = relationship("Video")
-    recipients = relationship("Recipient")
+    trusted_people = relationship("Trusted", back_populates="author")
+    recipients = relationship("Recipient", back_populates="author")
+
+    # Relationships
+    videos = relationship("Video", back_populates="author")
+    images = relationship("Image", back_populates="author")
+    texts = relationship("Text", back_populates="author")
 
     @property
     def password(self):
