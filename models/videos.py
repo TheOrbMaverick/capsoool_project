@@ -27,3 +27,5 @@ class Video(Base):
     createdAt = Column(DateTime, default=datetime.now)
     
     author = relationship("User", back_populates="videos")
+
+    recipients = relationship("Recipient", secondary="video_recipients", back_populates="videos")

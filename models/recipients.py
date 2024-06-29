@@ -30,5 +30,9 @@ class Recipient(Base):
     createdAt = Column(DateTime, default=datetime.now)
 
     author = relationship("User", back_populates="recipients")
-    
-    contents = relationship("ContentRecipients", back_populates="recipient")
+
+    videos = relationship("Videos", secondary="video_recipients", back_populates="recipients")
+
+    images = relationship("Images", secondary="image_recipients", back_populates="recipients")
+
+    texts = relationship("Texts", secondary="text_recipients", back_populates="recipients")

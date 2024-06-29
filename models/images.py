@@ -24,3 +24,5 @@ class Image(Base):
     createdAt = Column(DateTime, default=datetime.now)
 
     author = relationship("User", back_populates="images")
+
+    recipients = relationship("Recipient", secondary="image_recipients", back_populates="images")

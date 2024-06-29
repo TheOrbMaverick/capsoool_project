@@ -24,3 +24,5 @@ class Text(Base):
     createdAt = Column(DateTime, default=datetime.now)
 
     author = relationship("User", back_populates="texts")
+
+    recipients = relationship("Recipient", secondary="text_recipients", back_populates="texts")

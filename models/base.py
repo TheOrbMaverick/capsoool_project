@@ -15,25 +15,25 @@ class BaseModel(Base):
     createdAt = Column(DateTime, default=datetime.now)
 
 
-class Content(Base):
-    __tablename__ = 'contents'
+class VideoRecipients(Base):
+    __tablename__ = "video_recipients"
     id = Column(Integer, primary_key=True)
-    type = Column(String, nullable=False)
-    author_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    # Define relationships
-    author = relationship("User", back_populates="contents")
-    recipients = relationship("ContentRecipients", back_populates="content")
+    recipientId = Column(Integer, ForeignKey('recipients.id'), nullable=False)
+    videoId = Column(Integer, ForeignKey('videos.id'), nullable=False)
+    authorId = Column(Integer, ForeignKey('users.id'), nullable=False)
 
 
-class ContentRecipients(Base):
-    __tablename__ = "content_recipients"
+class ImageRecipients(Base):
+    __tablename__ = "image_recipients"
     id = Column(Integer, primary_key=True)
-    content_id = Column(Integer, ForeignKey('contents.id'), nullable=False)
-    recipient_id = Column(Integer, ForeignKey('recipients.id'), nullable=False)
-    author_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    # Unique constraint to avoid duplicate entries
-    __table_args__ = (UniqueConstraint('content_id', 'recipient_id', 'author_id', name='_content_recipient_uc'),)
-    # Define relationships
-    content = relationship("Content", back_populates="recipients")
-    recipient = relationship("Recipient", back_populates="contents")
+    recipientId = Column(Integer, ForeignKey('recipients.id'), nullable=False)
+    imageId = Column(Integer, ForeignKey('images.id'), nullable=False)
+    authorId = Column(Integer, ForeignKey('users.id'), nullable=False)
+
+
+class TextRecipients(Base):
+    __tablename__ = "text_recipients"
+    id = Column(Integer, primary_key=True)
+    recipientId = Column(Integer, ForeignKey('recipients.id'), nullable=False)
+    textId = Column(Integer, ForeignKey('texts.id'), nullable=False)
+    authorId = Column(Integer, ForeignKey('users.id'), nullable=False)
