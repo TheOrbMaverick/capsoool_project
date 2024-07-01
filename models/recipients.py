@@ -31,8 +31,8 @@ class Recipient(Base):
 
     author = relationship("User", back_populates="recipients")
 
-    videos = relationship("Videos", secondary="video_recipients", back_populates="recipients")
+    videos = relationship("Video", secondary="video_recipients", back_populates="recipients")
 
-    images = relationship("Images", secondary="image_recipients", back_populates="recipients")
+    images = relationship("Image", secondary="image_recipients", back_populates="recipients")
 
-    texts = relationship("Texts", secondary="text_recipients", back_populates="recipients")
+    texts = relationship("Text", secondary="text_recipients", back_populates="recipients")

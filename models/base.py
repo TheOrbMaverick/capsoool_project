@@ -20,7 +20,7 @@ class VideoRecipients(Base):
     id = Column(Integer, primary_key=True)
     recipientId = Column(Integer, ForeignKey('recipients.id'), nullable=False)
     videoId = Column(Integer, ForeignKey('videos.id'), nullable=False)
-    authorId = Column(Integer, ForeignKey('users.id'), nullable=False)
+    authorId = Column(String, ForeignKey('users.id'), nullable=False)
 
 
 class ImageRecipients(Base):
@@ -28,7 +28,7 @@ class ImageRecipients(Base):
     id = Column(Integer, primary_key=True)
     recipientId = Column(Integer, ForeignKey('recipients.id'), nullable=False)
     imageId = Column(Integer, ForeignKey('images.id'), nullable=False)
-    authorId = Column(Integer, ForeignKey('users.id'), nullable=False)
+    authorId = Column(String, ForeignKey('users.id'), nullable=False)
 
 
 class TextRecipients(Base):
@@ -36,4 +36,4 @@ class TextRecipients(Base):
     id = Column(Integer, primary_key=True)
     recipientId = Column(Integer, ForeignKey('recipients.id'), nullable=False)
     textId = Column(Integer, ForeignKey('texts.id'), nullable=False)
-    authorId = Column(Integer, ForeignKey('users.id'), nullable=False)
+    authorId = Column(String, ForeignKey('users.id'), nullable=False)
