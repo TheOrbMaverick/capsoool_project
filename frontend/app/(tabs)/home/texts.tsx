@@ -10,7 +10,6 @@ import { buttonStyle } from '@/constants/mystyles';
 import { fetchData } from '@/functions/fetchData';
 import { DataContext } from '@/components/contexts/DataContext';
 import { deleteItem } from '@/functions/delete';
-import { router } from 'expo-router';
 import { TextData } from '@/components/contexts/DataContext';
 
 /**

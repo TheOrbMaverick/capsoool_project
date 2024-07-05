@@ -1,10 +1,10 @@
-import { View, Text, ScrollView, Image, Platform, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Alert } from 'react-native';
 import React, { useContext, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
-import { buttonStyle, containerStyle } from '@/constants/mystyles';
+import { buttonStyle } from '@/constants/mystyles';
 import { UserContext } from '@/components/contexts/UserContext';
 import Recipients from '@/components/Recipients';
 import { DataContext } from '@/components/contexts/DataContext';

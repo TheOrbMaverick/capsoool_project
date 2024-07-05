@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, ScrollView, FlatList, RefreshControl } from 'react-native'
+import { SafeAreaView, FlatList } from 'react-native'
 import React, { useContext, useState } from 'react'
 import ContactList from '@/components/ContactList'
 import { DataContext, Trusted } from '@/components/contexts/DataContext';

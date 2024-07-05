@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, Image, Platform, Alert } from 'react-native';
-import React, { useState, useEffect, useContext } from 'react';
+import { View, Text, ScrollView, Image, Alert } from 'react-native';
+import React, { useState, useContext } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../../constants';
 import FormField from '@/components/FormField';

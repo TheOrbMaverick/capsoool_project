@@ -4,11 +4,9 @@ import VideoCapsoool from '@/components/VideoCapsoool';
 import { VideoData } from '@/components/contexts/DataContext';
 import { UserContext } from '@/components/contexts/UserContext';
 import UserInfo from '@/components/UserInfo';
-import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, Animated, ScrollView, Alert } from 'react-native';
+import React, { useContext, useState } from 'react';
 import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { deleteItem } from '@/functions/delete';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = 50;
