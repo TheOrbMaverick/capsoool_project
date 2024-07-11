@@ -1,102 +1,52 @@
-# Capsoool Mobile App
+# Welcome to your Expo app 👋
 
-In 2012, I lost my Father, a great and knowledgeable man.
-I didn’t have the privilege of knowing him and we had just started building a good relationship the year before he died.
-This has always made me feel sad and I imagine all the things that he would have wanted to tell me or teach before his untimely death.
-This life experience urged me to create something that’ll help people to not feel the irreparable loss that I feel everytime I think of my father.
-I’ve had the idea for a long time and so I started the long and adious journey of building Capsool.
-I didn’t have enough skill and knowledge to execute this idea of mine until I found the ALX school which has taught me a whole lot since I enrolled.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-This is my Capsoool project : A mobile app for storing people’s wills electronically or as I like to call them, capsoools.
+## Get started
 
-## The idea is to have a time capsule of one’s life to leave for your family.
+1. Install dependencies
 
-It gives one the opportunity to save videos, images, voice messages and the messages that can be kept and sent to the family members after one’s demise.
+   ```bash
+   npm install
+   ```
 
-## The languages and technical skills that were used are:
+2. Start the app
 
-# BACKEND:
+   ```bash
+    npx expo start
+   ```
 
-- Python backend
-- Flask framework
-- bcrpyt
-- SQLAlchemy and ORM
-- SQLITE3 DB to be changed to MySQL or PostGress on production
+In the output, you'll find options to open the app in a
 
-# FRONTEND:
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-- Typescript
-- React Native with Expo
-- Expo router
-- Nativewind CSS
-- Node package manager
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## HOW TO RUN THE APP
+## Get a fresh project
 
-First you need to open 2 terminals for the project.
-
-Then run the backend from the root folder:
-in capsoool_project directory run the "app.py" file
-
-On windows:
+When you're ready, run:
 
 ```bash
-python app.py
+npm run reset-project
 ```
 
-On Mac:
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-```bash
-python3 app.py
-```
+## Learn more
 
-After running that move to the new terminal and cd to the "frontend" folder
+To learn more about developing your project with Expo, look at the following resources:
 
-```bash
-cd frontend
-```
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-in the frontend folder run:
+## Join the community
 
-```bash
-npx expo start
-```
+Join our community of developers creating universal apps.
 
-or
-(to clear cache)
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
-```bash
-npx expo start -c
-```
 
-Once the frontend is up and runing you can:
-
-run the app in ios using the command: 'i'
-on android with 'a'
-or you can run it on web using "w".
-
-from there you can navigate through the app:
-
-- signup to create an account,
-- login with the email and pasword you creted
-- hit the create button to create a capsoool. all fileds must contain something. write a message you would like to live behid for your family.
-- after that you can press and hold down (holding down does not work on web) to delete the entry.
-- or you can click it once to edit the entry.
-
-## A default login and password you can use if you do not want to sign up is:
-
-email: `ita@example.com`
-password: `123456`
-
-The database is sqlite and is also contained in the project folder so that you can see changes that are going on as you made them.
-The passwords are hashed and not stored directly in string. But functionality for stronger passwords have not yet been added.
-
-In the web app you can view user API's that I created. using "api.localhost:5000". I used a blueprint to create the api route. I made the api a subdomain as I see in most industry standard apps.
-
-The router files for the api is located at "capsoool_project/routes" the models for the database are located in "capsoool_project/models"
-
-I use a basemodel.py file to set certain things that are constant throughout all the database tables such as "id" and "createdAt".
-
-The "text.py", "trusted.py" and "user.py" are files that i run to insert default default data in the database for testing purposes. just so the created database has some data.
-
-link to landing page: https://itaenangalxlandingpage.my.canva.site/
